@@ -1,0 +1,57 @@
+.personal-data-modifier-box{
+    display: flex;
+    flex-direction: column;
+    margin: 0 2em;
+    color: #1a1a1a;
+    padding: 0.5em 0em;
+    background-color: #fff;
+    max-width: 100%;
+}
+
+/* picture */
+
+.cv-picture-container{
+    display: block;
+    min-height: 40%;
+}
+
+
+#avatar-edit{
+    max-height: 100px;
+    /*border-radius: 50%;*/
+}
+
+
+
+
+
+.cv-picture-input:hover{
+    cursor: pointer;
+
+}
+
+
+/* personal data */
+
+.personal-data-inputs{
+    display: block;
+    height: fit-content;
+}
+
+/* contact-info */
+
+.contact-info{
+    display: flex;
+}
+
+.contact-info >div{
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    width: 100%;
+    margin-right: 1em;
+}
+
+.contact-info div:last-child{
+    margin-right: 0;
+}

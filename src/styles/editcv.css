@@ -1,0 +1,108 @@
+*{
+    margin: 0;
+}
+
+.edit-cv-section{
+    margin-top: 1em;
+    width: 45%;
+}
+
+
+.cv-section{
+    margin: 0 0 0 2em;
+    padding: 1em 0.5em;
+    color: #1a1a1a;
+    background-color: #ffffff;
+    border-radius: 5px;
+    width: 100%;
+    overflow: hidden;
+
+}
+
+.cv-section-info{
+    width: 100%;
+    display: flex;
+}
+
+.cv-section-info-title{
+    display: flex;
+}
+
+.dropdown{
+    padding: 0;
+    margin: 0 0 0 auto;
+}
+
+
+.add-item{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.add-item-button{
+    font-size: 0.8em;
+    background-color: #c2d5c2;
+    color: #1d1913;
+    border-radius: 10px;
+    width: 40%;
+    margin-top: 1em;
+}
+
+.icon-button{
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+ .edit-cv-section .dropdown button:hover{
+     border: none;
+ }
+
+ /* collapsible */
+
+.items-closed{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s ease-in;
+    transition-delay: -0.7s;
+}
+
+
+.items-open{
+    max-height: 500px;
+    transition: max-height 1s ease-in;
+}
+
+/* */
+
+
+.edit-cv-section > * {
+    box-sizing: border-box;
+    margin-bottom: 1em;
+}
+
+/* experience editor */
+
+.done-button, .add-item-button{
+    background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%);
+    margin: 1em auto 1em auto;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white; box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    width: 30%;
+
+}
+
+.done-button:hover{
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}

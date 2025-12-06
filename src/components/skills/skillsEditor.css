@@ -1,0 +1,47 @@
+.skills-section{
+    width: fit-content;
+    margin-bottom: 0;
+    height: fit-content;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.skills-input-section{
+    background-color: #ffffff;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.skill-input{
+    margin-bottom: 1em;
+}
+
+#add-skill-button{
+    background: #dae2f8; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #dae2f8, #d6a4a4); /* Chrome 10-25, Safari 5.1-6 */
+    background-image: linear-gradient(to right, #aebdd5 0%, #a4c5c4 51%, #aeaeae 100%);
+    color: white;
+    margin-left: 1em;
+}
+
+
+/* skills buttons*/
+
+.skills-items{
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.skills-items .item{
+    padding: 0.5em;
+    margin: 0 0.5em 1em 0.5em;
+    max-height: fit-content;
+}
+
+.skills-items .edit-icon{
+    margin-left: 0.5em;
+}

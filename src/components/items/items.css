@@ -1,0 +1,21 @@
+.item {
+    margin: 1em 2em;
+    padding: 0.5em 0.75em 0.5em 0.5em;
+    border-bottom: 5px solid #bcafaf;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+}
+
+.item:hover{
+    cursor: pointer;
+}
+
+.edit-icon{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+

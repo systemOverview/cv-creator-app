@@ -1,0 +1,212 @@
+/* general */
+
+input[placeholder] { text-overflow: ellipsis; }
+::-moz-placeholder { text-overflow: ellipsis; } /* firefox 19+ */
+input:-moz-placeholder { text-overflow: ellipsis; }
+
+input, textarea{
+    font-family: inherit;
+    background-color: #f3f4f6;
+    border: none;
+    border-radius: 5px;
+    padding: 1em 2em;
+    margin: 0 0 0.5em 0;
+    flex-grow: 1;
+
+}
+
+/* experience editor*/
+
+
+
+
+/* Edit cv section */
+.edit-cv {
+    width: 30%;
+}
+
+/* data modifier sections */
+
+
+
+.data-modifier-box{
+    margin: 0 0 0 2em;
+    color: #1a1a1a;
+    padding: 0.5em 2em;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px gray;
+    width: 100%;
+}
+
+.data-modifier-title{
+    margin-bottom: 2em;
+    margin-left: -1.7em;
+    background-color: #d3c3c3;
+    padding: 0.5em 1em;
+    width: fit-content;
+    color: #323232;
+    letter-spacing: 3px;
+}
+
+
+.from-date, .horizontal-multiple-input-holder div:first-child{
+    margin-right: 1em;
+}
+.date-input{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+label{
+    font-weight: bold;
+    margin : 0 0.5em 0.2em 0;
+}
+
+.horizontal-multiple-input-holder{
+    display: flex;
+}
+
+
+.horizontal-element-input, .horizontal-element-input{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+.dates-input, .achievement{
+    display: flex;
+    align-items: center;
+}
+
+
+
+.achievement {
+    margin-bottom: 1em;
+    height: fit-content;
+}
+
+
+
+.achievement svg{
+    height: 25px;
+    margin-left: 1em;
+}
+
+
+
+
+/* Date picker */
+
+.date-picker{
+    display: flex;
+    width: 30%;
+    max-height: 150px;
+    position: absolute;
+    background-color: #ffffff;
+    margin-top: 5em;
+    border: 2px solid #c5b8b8;
+    border-radius: 5px;
+}
+
+
+.months-picker{
+    width: 50%;
+    border-right: 2px solid #bf9b9b;
+    margin: 0.3em;
+    height: 150px;
+    display: flex;
+    align-items: center;
+
+
+}
+
+.month-button{
+    width: 10%;
+    padding: 0.4em 0.8em;
+    background-color: #ffffff;
+    min-width: 5em;
+
+
+}
+
+.years-picker{
+    display: inline-block;
+    width: 50%;
+    overflow-y: scroll;
+    max-height: inherit;
+}
+
+
+.year-button{
+    margin: 0.1em;
+    background-color: #ffffff;
+
+}
+
+.month-button:hover, .year-button:hover, .button-active{
+    background-color: #d9f7f8;
+    border-color: #646cff;
+}
+
+
+
+.data-picker > *{
+}
+
+.hidden{
+    display: none;
+}
+
+.icon{
+    height: 25px;
+    width: auto;
+
+}
+
+/* pdf viewers */
+
+.main-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.download{
+    display: block;
+    background-color: red;
+    min-width: 200px;
+    color: blue;
+}
+
+.Test {
+    background-color: red;
+    min-height: 100px;
+}
+
+.pdf-viewer{
+    width: 50%;
+    background-color: red;
+}
+
+.download-link{
+    background-color: red;
+    color: blue;
+}
+
+/*react-pdf*/
+
+.react-pdf__Page{
+    width: fit-content;
+}
+
+/* container */
+
+.container {
+    width: 90%;
+    margin: 2em auto 0 auto;
+    display: flex;
+    justify-content: space-around;
+}
