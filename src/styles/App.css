@@ -210,3 +210,7 @@ label{
     display: flex;
     justify-content: space-around;
 }
+
+.container > *{
+    min-width: 40%; /* TODO : find a less hacky way to prevent the ugly flickering when the PDF preview is re-rendering */
+}

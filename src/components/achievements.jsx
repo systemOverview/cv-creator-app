@@ -1,10 +1,10 @@
 import {getRandomInt} from "./helper.js";
 import {achievementsList} from "../data/cv-data-examples.js";
-
+import {memo} from "react";
 
 console.log(getRandomInt(2,6))
 
-function CreateAchievements(){
+const CreateAchievements = memo(function CreateAchievements(){
     // label - input (id, placeholder)
     let chosenAchievements = [];
     for (let i=0;i<3; i++){
@@ -21,7 +21,7 @@ function CreateAchievements(){
             )
         })
     )
-}
+});
 
 function achievements(){
     return (

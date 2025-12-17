@@ -18,7 +18,10 @@ function ExperienceEditor(props){
     function additem(){
         props.callback(false);
     }
+    let test = "ah";
+/*    useEffect(() => {
 
+    }, []);*/
 
     return (
         <div className={"data-modifier-box"}>

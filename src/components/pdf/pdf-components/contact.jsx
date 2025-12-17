@@ -23,22 +23,24 @@ const styles = StyleSheet.create({
         width : "auto",
     }
 })
-export const ContactInfo = ({email, phone, address}) => {
+export const ContactInfo = (contactInfo) => {
+    let {phoneNumber, email, address} = contactInfo;
     return(
-        <View style = {styles.contactSection}>
+
+    <View style = {styles.contactSection}>
             <View style = {styles.contactSectionItem}>
                 <Image style = {styles.icon} src={phoneIcon}> </Image>
-                <Text> 012345678</Text>
+                <Text render={phoneNumber}></Text>
             </View>
 
             <View style = {styles.contactSectionItem}>
                 <Image style = {styles.icon} src={emailIcon}> </Image>
-                <Text> badiskerdellou@gmail.com </Text>
+                <Text render={email}></Text>
             </View>
 
             <View style = {styles.contactSectionItem}>
                 <Image style = {styles.icon} src={addressIcon}> </Image>
-                <Text> Pallaswiesenstr 35 </Text>
+                <Text render={address}></Text>
             </View>
 
         </View>

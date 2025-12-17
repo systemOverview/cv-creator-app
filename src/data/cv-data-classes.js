@@ -1,14 +1,14 @@
 import {generateRandomId} from "../components/helper.js";
 
 
-export const personalData = {
-    name : "",
-    title: "",
-    photo:"",
-    Email:"",
-    phoneNumber:"",
-    address:""
+export function personalData (name, title, photo, email, phoneNumber, address){
 
+    this.name = name;
+    this.title = title;
+    this.photo = photo;
+    this.email = email;
+    this.phoneNumber = phoneNumber;
+    this.address = address;
 }
 
 export function experienceData(companyName, companyLocation, startDate, endDate, achievements){

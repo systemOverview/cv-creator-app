@@ -5,9 +5,11 @@ import {titleExamples} from "../../data/cv-data-examples.js";
 import {getRandomInt} from "../helper.js";
 function PersonalInfoEditor(props){
 
+    let dataInfo = props.PersonalData[0];
+    let setPersonalData = props.PersonalData[1];
 
 
-  function avatarHandler(){
+    function avatarHandler(){
     let avatarDisplay = document.getElementById("avatar-edit")
     let avatarInput = document.getElementById("img-input-hidden").files[0];
       const reader = new FileReader();
@@ -22,6 +24,13 @@ function PersonalInfoEditor(props){
 
   }
 
+    function updatePersonalInfo(attributeToChange, newValue) {
+        setPersonalData(prevData => ({
+            ...prevData,
+            [attributeToChange]: newValue // Use square brackets to update the dynamic key
+        }));
+
+    }
 
     return (
         <div className={"personal-data-modifier-box"}>
@@ -41,36 +50,48 @@ function PersonalInfoEditor(props){
                 <div className={"personal-input horizontal-element-input"}>
                     <label htmlFor="personal-name-input"> Full name </label>
                     <input id="personal-name-input" className={"text-input"} placeholder={"John Doe"}
-                           defaultValue={props.element ? props.element.companyName : ""} onChange={
-                        (e)=>{
-                               props.setName(e.target.value);
-                    }}
+                           defaultValue={props.element ? props.element.companyName : ""}
+                           onChange={(e)=>{updatePersonalInfo("name", e.target.value);}}
                            />
                 </div>
 
                 <div className={"personal-title horizontal-element-input"}>
                     <label htmlFor={"personal-title-input"}> Professional title </label>
-                    <input id={"personal-title-input"} placeholder={
-                        titleExamples[getRandomInt(0,titleExamples.length)]
-                    }
-                           defaultValue={props.element ? props.element.companyLocation : ""}/>
+                    <input id={"personal-title-input"}
+                           placeholder={titleExamples[getRandomInt(0,titleExamples.length)]}
+                           defaultValue={props.element ? props.element.companyLocation : ""}
+                           onChange={(e)=>{updatePersonalInfo("title", e.target.value);}}
+                    />
                 </div>
 
                 <div className={"contact-info"}>
 
                     <div className={"phone-number-input-section"}>
                         <label htmlFor={"phone-number-input"}> Phone number </label>
-                        <input id={"phone-number-input"} placeholder={"0123456789"}/>
+                        <input
+                               id={"phone-number-input"}
+                               placeholder={"0123456789"}
+                               onChange={(e)=>{updatePersonalInfo("phoneNumber", e.target.value);}}
+                        />
                     </div>
 
                     <div className={"email-input-section"}>
                         <label htmlFor={"email-input"}> Email address </label>
-                        <input id={"email-input"} placeholder={"John.doe@gmail.com"}/>
+                        <input
+                               id={"email-input"}
+                               placeholder={"John.doe@gmail.com"}
+                               onChange={(e)=>{updatePersonalInfo("email", e.target.value);}}
+                        />
                     </div>
 
                     <div className={"address-input-section"}>
                         <label htmlFor={"address-input"}> Address </label>
-                        <input id={"address-input"} placeholder={"Marktplatz 15"}/>
+                        <input
+                            id={"address-input"}
+                            placeholder={"Marktplatz 15"}
+                            onChange={(e)=>{updatePersonalInfo("address", e.target.value);}}
+                        />
+
                     </div>
 
                 </div>

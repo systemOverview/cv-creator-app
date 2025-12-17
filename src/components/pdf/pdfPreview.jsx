@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { pdfjs, Document, Page } from 'react-pdf'
-import { pdf } from '@react-pdf/renderer'
+import {pdf, usePDF} from '@react-pdf/renderer'
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 
@@ -14,6 +14,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 const PDFViewer = ({ children }) => {
     const [pdfUrl, setPdfUrl] = useState(null)
 
+
+
     useEffect(() => {
         const child = React.Children.only(children)
 
@@ -23,6 +25,7 @@ const PDFViewer = ({ children }) => {
     }, [children])
 
     return (
+        <div>
         <Document file={pdfUrl} key={crypto.randomUUID()}>
             {/* I used key here although there is only one component to load because of a bug that
             happens when a user updates the form with fast speed, this could probably be solved otherwise by
@@ -31,6 +34,7 @@ const PDFViewer = ({ children }) => {
             */}
             <Page renderMode='canvas' pageNumber={1} />
         </Document>
+        </div>
     )
 }
 

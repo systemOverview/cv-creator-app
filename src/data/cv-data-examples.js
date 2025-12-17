@@ -1,7 +1,8 @@
+import {personalData} from "./cv-data-classes.js";
 import {experienceData} from "./cv-data-classes.js";
 import {educationData} from "./cv-data-classes.js";
 import {skillsData} from "./cv-data-classes.js";
-
+import {getRandomInt} from "../components/helper.js";
 export const achievementsList = [
     "Increased sales by 25% within the first year by implementing a new customer acquisition strategy.",
     "Led a team of 5 to complete a project 2 weeks ahead of schedule, exceeding client expectations.",
@@ -15,6 +16,8 @@ export const achievementsList = [
     "Created a company-wide newsletter that improved internal communication and team collaboration."
 ];
 
+
+
 export const titleExamples= [
     "Cloud Solutions Architect",
     "Cybersecurity Analyst",
@@ -27,8 +30,10 @@ export const titleExamples= [
     "Software Development Manager",
     "Systems Integration Consultant"
 ];
-// experience examples
+// personal data example
+export const firstPersonalDataExample = new personalData("John Doe", titleExamples[getRandomInt(0,titleExamples.length)], null, "John.doe@gmail.com", "0123456789", "Marktplatz 15")
 
+// experience examples
 let firstExperienceExample = new experienceData("Google", "Munich", "12/22", "07/25", [
     "Increased sales by 25% within the first year by implementing a new customer acquisition strategy.",
     "Led a team of 5 to complete a project 2 weeks ahead of schedule, exceeding client expectations.",

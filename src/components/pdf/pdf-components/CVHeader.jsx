@@ -25,10 +25,18 @@ const styles = StyleSheet.create({
 
 
 function CVHeader(props) {
+    let {name, title, email, phoneNumber, address} = props;
+    console.log("header" + name);
     return <section className={"header"}>
-        <Text style={styles.fullName} render={props.render} fixed></Text>
-        <Text style={styles.title}> Student at Hochschule Darmstadtsssssssssssssspakakaka Darmstadssssssss </Text>
-        <ContactInfo> </ContactInfo>
+        <Text style={styles.fullName} render={name} fixed></Text>
+        <Text style={styles.title} render={title}> </Text>
+        <ContactInfo
+            phoneNumber={phoneNumber}
+            email = {email}
+            address = {address}
+
+        >
+        </ContactInfo>
 
     </section>;
 }
