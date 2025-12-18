@@ -1,7 +1,9 @@
 import React, {useEffect, useState, memo, useContext, createContext} from 'react'
-import { PDFDownloadLink } from '@react-pdf/renderer'
 
 import './styles/App.css'
+
+
+import {PDFDownloaderButton} from "./components/pdf/PDFDownloader.jsx"
 import {firstPersonalDataExample} from "./data/cv-data-examples.js";
 import {experienceExamples} from "./data/cv-data-examples.js";
 import {educationExamples} from "./data/cv-data-examples.js";
@@ -19,7 +21,6 @@ import jobIcon from "./assets/job.svg";
 
 
 
-
 const App = () => {
     const [name, setName] = useState("nsull");
     const [personalData, setPersonalData] = useState(firstPersonalDataExample)
@@ -27,10 +28,20 @@ const App = () => {
     const [experienceData, setExperienceData] = useState(experienceExamples)
     const [skillsData, setSkillsData] = useState(skillsExamples)
     const [pdfLink, setPdfLink] = useState(null);
+    const [test, setTest] = useState(1);
+    useEffect(() => {
+        //Runs only on the first render
+    }, []);
+
+    let CV =             <MyDocument
+        personalData={personalData}
+        educationData={educationData}>
+    </MyDocument>
+
     return(
     <div className={"container"}>
 
-
+    <div className={"left-container"}>
         <Editcv
 
             PersonalData = {[personalData, setPersonalData]}
@@ -39,25 +50,26 @@ const App = () => {
             skillsData = {[[skillsData,setSkillsData]]}
             >
         </Editcv>
-{/*
-        <PDFViewer className ="pdff">
-            <MyDocument name={name}> </MyDocument>
+
+        <PDFDownloaderButton name = {personalData.name} doc = {CV}>
+
+        </PDFDownloaderButton>
+    </div>
+        {/* setPdfLink = {setPdfLink}*/}
+
+        <PDFViewer setPdfLink = {setTest}>
+            {CV}
         </PDFViewer>
+
+{/*
+
 */}
-        <PDFViewer>
-            <MyDocument
-                setPdfLink = {setPdfLink}
-                personalData={personalData}
-                educationData={educationData}>
-            </MyDocument>
-        </PDFViewer>
+
 {/*
-        <PDFDownloadLink
-            fileName={fileName}
-    document={document}
->
-   Click Me
-</PDFDownloadLink>
+
+    <div>
+        <CreatePdfUrl file = {CV}> </CreatePdfUrl>
+    </div>
 */}
 
 

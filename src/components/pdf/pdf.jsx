@@ -6,9 +6,10 @@ import {useState, useContext} from "react";
 const styles = StyleSheet.create({
     page: {
         backgroundColor: '#FFFFFF',
-        fontSize: 15,
+        fontSize: 11,
         paddingLeft : 40,
         paddingRight : 40,
+        paddingTop: 20,
     },
 
     section : {

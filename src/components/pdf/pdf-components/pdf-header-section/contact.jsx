@@ -15,11 +15,12 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection : "row",
         marginRight : 10,
+        alignItems : "center"
     },
 
     icon : {
         marginRight : 3,
-        height : 18,
+        height : 10,
         width : "auto",
     }
 })
@@ -30,7 +31,7 @@ export const ContactInfo = (contactInfo) => {
     <View style = {styles.contactSection}>
             <View style = {styles.contactSectionItem}>
                 <Image style = {styles.icon} src={phoneIcon}> </Image>
-                <Text render={phoneNumber}></Text>
+                <Text  render={phoneNumber}></Text>
             </View>
 
             <View style = {styles.contactSectionItem}>

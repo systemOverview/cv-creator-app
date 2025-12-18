@@ -3,7 +3,6 @@
 input[placeholder] { text-overflow: ellipsis; }
 ::-moz-placeholder { text-overflow: ellipsis; } /* firefox 19+ */
 input:-moz-placeholder { text-overflow: ellipsis; }
-
 input, textarea{
     font-family: inherit;
     background-color: #f3f4f6;
@@ -209,8 +208,41 @@ label{
     margin: 2em auto 0 auto;
     display: flex;
     justify-content: space-around;
+
 }
 
 .container > *{
     min-width: 40%; /* TODO : find a less hacky way to prevent the ugly flickering when the PDF preview is re-rendering */
+    /*
+    background-color: red;
+    */
+
+}
+
+
+.left-container{
+    margin: 0 2em;
+}
+
+/*Download Button*/
+
+
+button {
+    background-color: transparent;
+}
+
+.download-button{
+    background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%);
+    margin: 1em auto 1em auto;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    width: 30%;
+    min-width: fit-content;
 }

@@ -4,7 +4,6 @@
 
 .edit-cv-section{
     margin-top: 1em;
-    width: 45%;
 }
 
 
@@ -14,7 +13,6 @@
     color: #1a1a1a;
     background-color: #ffffff;
     border-radius: 5px;
-    width: 100%;
     overflow: hidden;
 
 }
@@ -40,6 +38,7 @@
     justify-content: center;
 }
 
+/*
 .add-item-button{
     font-size: 0.8em;
     background-color: #c2d5c2;
@@ -48,6 +47,7 @@
     width: 40%;
     margin-top: 1em;
 }
+*/
 
 .icon-button{
     background: none;

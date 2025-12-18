@@ -16,9 +16,11 @@ let styles = StyleSheet.create(
         },
         degreeName : {
             fontWeight : "bold",
+/*
             fontSize : 13,
+*/
             marginTop : 5,
-            marginBottom : 10,
+            marginBottom : 2,
 
         }
 
