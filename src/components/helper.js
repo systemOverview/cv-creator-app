@@ -10,3 +10,7 @@ export function generateRandomId() {
     );
 }
 
+export function generateRandomExample(examplesList){
+    let randomIndex = getRandomInt(0,examplesList.length-1);
+    return examplesList[randomIndex];
+}

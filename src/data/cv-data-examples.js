@@ -34,13 +34,13 @@ export const titleExamples= [
 export const firstPersonalDataExample = new personalData("John Doe", titleExamples[getRandomInt(0,titleExamples.length)], null, "John.doe@gmail.com", "0123456789", "Marktplatz 15")
 
 // experience examples
-let firstExperienceExample = new experienceData("Google", "Munich", "12/22", "07/25", [
+let firstExperienceExample = new experienceData("Google", "Munich", "12/2022", "07/2025", [
     "Increased sales by 25% within the first year by implementing a new customer acquisition strategy.",
     "Led a team of 5 to complete a project 2 weeks ahead of schedule, exceeding client expectations.",
     "Streamlined company operations, reducing overhead costs by 15% through process automation.",
 ])
 
-let secondExperienceExample = new experienceData("Facebook", "California", "12/22", "07/25", [
+let secondExperienceExample = new experienceData("Facebook", "California", "12/2022", "07/2025", [
     "Increased sales by 25% within the first year by implementing a new customer acquisition strategy.",
     "Led a team of 5 to complete a project 2 weeks ahead of schedule, exceeding client expectations.",
     "Streamlined company operations, reducing overhead costs by 15% through process automation.",
@@ -53,13 +53,13 @@ export const experienceExamples = [
 
 // education examples
 
-let firstEducationExample = new educationData("Hochschule Darmstadt", "12/22", "07/25", [
+let firstEducationExample = new educationData("Hochschule Darmstadt", "Bachelor in Computer science", "12/2022", "07/2025", [
     "Increased sales by 25% within the first year by implementing a new customer acquisition strategy.",
-    "Led a team of 5 to complete a project 2 weeks ahead of schedule, exceeding client expectations.",
+    "Led a team of 5 to complete a project 2 weeks ahead of schedule, exceeding client expectations.Increased sales by 25% within the first year by implementing a new customer acquisition strategy.Increased sales by 25% within the first year by implementing a new customer acquisition strategy.",
     "Streamlined company operations, reducing overhead costs by 15% through process automation.",
 ])
 
-let secondEducationExample = new educationData("TU Munich", "07/25", [
+let secondEducationExample = new educationData("TU Munich", "Masters in Computer science", "12/2022", "07/2025", [
     "Increased sales by 25% within the first year by implementing a new customer acquisition strategy.",
     "Led a team of 5 to complete a project 2 weeks ahead of schedule, exceeding client expectations.",
     "Streamlined company operations, reducing overhead costs by 15% through process automation.",

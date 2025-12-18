@@ -24,7 +24,6 @@ const years =[1950, 1951, 1952, 1953, 1954, 1955, 1956, 1957, 1958, 1959, 1960, 
 
 function PopulateSelect(props){
     let array = props.array;
-    console.log(array);
     return (array.map((element) => {
         return <option value={element}> {element} </option>
     }))

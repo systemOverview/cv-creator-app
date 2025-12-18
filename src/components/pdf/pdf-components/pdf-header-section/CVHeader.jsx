@@ -25,11 +25,13 @@ const styles = StyleSheet.create({
 
 
 function CVHeader(props) {
-    let {name, title, email, phoneNumber, address} = props;
-    console.log("header" + name);
+
+    let {name, title, email, phoneNumber, address, personalData} = props;
+
     return <section className={"header"}>
         <Text style={styles.fullName} render={name} fixed></Text>
         <Text style={styles.title} render={title}> </Text>
+
         <ContactInfo
             phoneNumber={phoneNumber}
             email = {email}
@@ -37,6 +39,7 @@ function CVHeader(props) {
 
         >
         </ContactInfo>
+
 
     </section>;
 }

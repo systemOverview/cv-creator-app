@@ -8,7 +8,6 @@ function CvSectionComponent(props) {
     const [isEditing, setEditing] = useState(false);
     const [elementToEdit, setElementToEdit] = useState(null); // pass the element to edit if the user wants to edit an existing element, null to create a new one
 // title
-    console.log(props.data);
     if (isEditing){
         // editor is the component that handles taking the item input
         return <props.editor element = {elementToEdit} callback = {setEditing}> </props.editor>; // if the user clicks on add item, it switches to the editing part of the section

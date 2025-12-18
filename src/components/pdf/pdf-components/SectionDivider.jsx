@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
 
     sectionDivider : {
         marginTop : 10,
+        paddingLeft : -40
     }
 
 

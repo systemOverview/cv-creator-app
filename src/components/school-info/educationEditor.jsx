@@ -4,7 +4,6 @@ import Achievements from "../achievements.jsx";
 import {useState} from "react";
 import "./educationEditor.css"
 function showDatePicker(index){
-    console.log("its running");
     let datePicker = document.getElementsByClassName("date-picker")[index];
     datePicker.classList.remove("hidden")
 }

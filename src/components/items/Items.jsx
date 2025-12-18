@@ -15,7 +15,6 @@ function ItemsGenerator(props){
     return (
         props.items[0][0].map(
             (item) =>{
-                console.log(item)
                 let itemKeys = Object.values(item)
                 return (
                 <div key={item.key} className={"item"}>

@@ -1,30 +1,32 @@
-import {Canvas, Document, Page, StyleSheet, View} from '@react-pdf/renderer';
-import CVHeader from "./pdf-components/CVHeader.jsx";
+import {Canvas, Document, Page, StyleSheet, View, Text} from '@react-pdf/renderer';
+import CVHeader from "./pdf-components/pdf-header-section/CVHeader.jsx";
+import CVEducation from "./pdf-components/pdf-education-section/CVEducation.jsx";
 import SectionDivider from "./pdf-components/SectionDivider.jsx";
 import {useState, useContext} from "react";
 const styles = StyleSheet.create({
     page: {
         backgroundColor: '#FFFFFF',
         fontSize: 15,
+        paddingLeft : 40,
+        paddingRight : 40,
+    },
+
+    section : {
+        marginTop: 15,
+    },
+
+    debugRedBorder : {
+        border : "1pt solid red",
     }
 
 });
 
 
 // Create Document Component
-const MyDocument = ({personalData}) => {
+const MyDocument = ({personalData,educationData}) => {
     let {name, title, email, phoneNumber, address} = personalData;
-
     const [fullName, setFullName] = useState("null");
 
-    const test = {
-        name : "B",
-        title :"t",
-        photo : null,
-        email : "test",
-        phoneNumber : "1234",
-        address : "here"
-    }
     return (
     <Document>
         <Page size="A4" style={styles.page}>
@@ -36,11 +38,21 @@ const MyDocument = ({personalData}) => {
                     phoneNumber={() => (`${phoneNumber}`)}
                     address={() => (`${address}`)}
 
-
                 />
 
+{/*
                 <SectionDivider> </SectionDivider>
+*/}
+
+
             </View>
+
+            <View  style={styles.section}>
+                <CVEducation
+                    educationData = {educationData}
+                />
+            </View>
+
 
         </Page>
     </Document>

@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import "./personalInfo.css"
 import avatar from "../../assets/avatar.png"
 import {titleExamples} from "../../data/cv-data-examples.js";
@@ -7,6 +7,10 @@ function PersonalInfoEditor(props){
 
     let dataInfo = props.PersonalData[0];
     let setPersonalData = props.PersonalData[1];
+    const [title, setTitle] = useState(""); // Initialize title with an empty string
+    useEffect(() => {
+        setTitle(titleExamples[getRandomInt(0,titleExamples.length)]);
+    },[]);
 
 
     function avatarHandler(){
@@ -15,7 +19,6 @@ function PersonalInfoEditor(props){
       const reader = new FileReader();
 
       reader.onload = function(event) {
-          console.log(event.target.result)
           avatarDisplay.src = event.target.result;
       };
 
@@ -58,7 +61,10 @@ function PersonalInfoEditor(props){
                 <div className={"personal-title horizontal-element-input"}>
                     <label htmlFor={"personal-title-input"}> Professional title </label>
                     <input id={"personal-title-input"}
+/*
                            placeholder={titleExamples[getRandomInt(0,titleExamples.length)]}
+*/
+                        placeholder={title}
                            defaultValue={props.element ? props.element.companyLocation : ""}
                            onChange={(e)=>{updatePersonalInfo("title", e.target.value);}}
                     />

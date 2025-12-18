@@ -20,8 +20,9 @@ export function experienceData(companyName, companyLocation, startDate, endDate,
     this.key = generateRandomId();
 }
 
-export function educationData(schoolName, startDate, endDate, achievements){
+export function educationData(schoolName, degreeName, startDate, endDate, achievements){
     this.schoolName = schoolName;
+    this.degreeName = degreeName;
     this.startDate = startDate;
     this.endDate = endDate;
     this.achievements = achievements;
