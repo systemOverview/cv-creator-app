@@ -33,7 +33,6 @@ function ItemsGenerator({items, setEditing, setKeyOfElementToEdit}){
 }
 
 function Items({items,callback, setKeyOfElementToEdit}){
-    console.log(setKeyOfElementToEdit)
     return (
         <div>
             <ItemsGenerator items={items} setEditing ={callback} setKeyOfElementToEdit ={setKeyOfElementToEdit}> </ItemsGenerator>

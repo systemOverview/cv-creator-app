@@ -126,3 +126,19 @@
 .delete-button{
     cursor: pointer;
 }
+
+/* achievements */
+.add-achievement-button{
+    display: flex;
+    border: 2px solid lightgreen;
+    align-items: center;
+    width: fit-content;
+}
+
+.add-achievement-icon{
+    margin-right: 1em;
+}
+
+.add-achievement-icon:hover{
+    border: 2px solid lightgreen;
+}

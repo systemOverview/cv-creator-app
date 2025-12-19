@@ -30,7 +30,7 @@ function PersonalInfoEditor(props){
     function updatePersonalInfo(attributeToChange, newValue) {
         setPersonalData(prevData => ({
             ...prevData,
-            [attributeToChange]: newValue // Use square brackets to update the dynamic key
+            [attributeToChange]: newValue
         }));
 
     }

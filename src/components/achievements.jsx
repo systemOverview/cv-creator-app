@@ -15,7 +15,7 @@ const CreateAchievements = memo(function CreateAchievements(props){
     )
     let achievements = element.achievements;
 
-    if (achievements==null){
+    if (achievements==null){ // This function generates random placeholders for the achievements inputs if no entries are set
         achievements = [];
         for (let i=0;i<3; i++){
             achievements.push(achievementsList[getRandomInt(0,achievementsList.length)])
@@ -23,34 +23,53 @@ const CreateAchievements = memo(function CreateAchievements(props){
 
     }
 
-    function deleteAchievement (key) {
-        let newAchievementsList = achievements.filter(
-            (achievement)=>{ return achievement.achievementKey!=key}
+    function deleteAchievement (keyOfAchievementToDelete) {
+        let updatedAchievementsList = achievements.filter(
+            (achievement)=>{ return achievement.achievementKey!=keyOfAchievementToDelete}
         )
-        let newElement = {...element, achievements : newAchievementsList}
+        let newElement = {...element, achievements : updatedAchievementsList}
         let newData = currentData.map(
             (currentElement) =>{
-                if (currentElement.key == element.key){
-                    return newElement;
-                }
-                else{
-                    return currentElement;
-                }
+                return (currentElement.key==element.key)?newElement:currentElement;
             }
         )
+
 
 
         setterFunction(newData)
 
     }
+    function updateAchievement (keyOfAchievementToUpdate, newAchievementValue){
+        let updatedAchievementsList = achievements.map(
+            (achievement)=>{
+               return (achievement.achievementKey==keyOfAchievementToUpdate?{...achievement, achievementText : newAchievementValue}:achievement);
+            }
+        )
+        console.log(updatedAchievementsList)
 
+        let newElement = {...element, achievements : updatedAchievementsList}
+        let newData = currentData.map(
+            (currentElement) =>{
+               return (currentElement.key==element.key)?newElement:currentElement;
+            }
+        )
+        setterFunction(newData)
+
+
+    }
 
     return (
         achievements.map((achievement, index)=>{
             return (
             <div className={"achievement"} key = {achievement.achievementKey}>
                 <label htmlFor={index}>•</label>
-                <input id={index} placeholder={achievement} defaultValue={achievements?achievement.achievementText:""}/>
+                <input
+                       id={index}
+                       placeholder={achievement}
+                       defaultValue={achievements?achievement.achievementText:""}
+                       onChange={(e)=>{updateAchievement(achievement.achievementKey, e.target.value);}}
+
+                />
                 <svg onClick={
                     ()=>{
                         deleteAchievement(achievement.achievementKey);
@@ -63,11 +82,13 @@ const CreateAchievements = memo(function CreateAchievements(props){
 });
 
 function achievements({data,keyOfElementToEdit}){
-    console.log(data)
     return (
     <div className={"achievements-input"}>
         <CreateAchievements data={data} keyOfElementToEdit = {keyOfElementToEdit}> </CreateAchievements>
-
+            <button className={"add-achievement-button"}>
+                <svg className={"add-achievement-icon icon"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#63E6BE" d="M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z"/></svg>
+                Add achievement
+            </button>
     </div>
     )
 

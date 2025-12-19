@@ -11,13 +11,27 @@ function showDatePicker(index){
 
 
 function EducationEditor({keyOfElementToEdit, callback, data}){
+    let educationData = data[0];
+    let setEducationData = data[1];
+
+    function updateEducationInfo(attributeToChange, newValue, key) {
+        let updatedData = educationData.map(
+            (educationEntry)=>{
+                return (educationEntry.key == key? {...educationEntry, [attributeToChange]:newValue} : educationEntry);
+            }
+        )
+
+    setEducationData(updatedData);
+
+    }
 
     function additem(){
         callback(false);
     }
+
     let element = data[0].find(
-        entry =>{
-            return entry.key == keyOfElementToEdit;
+        educationEntry =>{
+            return educationEntry.key == keyOfElementToEdit;
         }
     )
 
@@ -31,12 +45,24 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
 
                 <div className={"school-name"}>
                     <label htmlFor={"school-name-input"}> School name </label>
-                    <input id={"school-name-input"} placeholder={"Hochschule Darmstadt"} defaultValue={element?element.schoolName:""}/>
+                    <input
+                        id={"school-name-input"}
+                        placeholder={"Hochschule Darmstadt"}
+                        defaultValue={element?element.schoolName:""}
+                        onChange={(e)=>{updateEducationInfo("schoolName", e.target.value, keyOfElementToEdit);}}
+
+                    />
                 </div>
 
                 <div className={"school-degree"}>
-                    <label htmlFor={"school-degree-input"}> School name </label>
-                    <input id={"school-degree-input"} placeholder={"Computer science"} defaultValue={element?element.degreeName:""}/>
+                    <label htmlFor={"school-degree-input"}> Degree name </label>
+                    <input
+                        id={"school-degree-input"}
+                        placeholder={"Computer science"}
+                        defaultValue={element?element.degreeName:""}
+                        onChange={(e)=>{updateEducationInfo("degreeName", e.target.value, keyOfElementToEdit);}}
+
+                    />
                 </div>
 
             </div>
