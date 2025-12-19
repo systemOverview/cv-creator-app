@@ -4,6 +4,7 @@ import {pdf, usePDF} from '@react-pdf/renderer'
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import {View} from '@react-pdf/renderer'; // TODO remove
+import {generateRandomId} from "../../components/helper.js";
 
 /*
 import {Canvas, StyleSheet, View, Text, Document, Page} from '@react-pdf/renderer'; // TODO remove
@@ -53,17 +54,8 @@ const PDFViewer = (props) => {
 
     return (
         <div  className ={"pdf-viewer"}>
-{/*
-        <Document file={pdfUrl} key={crypto.randomUUID()}>
-             I used key here although there is only one component to load because of a bug that
-            happens when a user updates the form with fast speed, this could probably be solved otherwise by
-            waiting for the file to fully load the last keystroke change, but I believe this looks better.
-            solution found on : https://github.com/wojtekmaj/react-pdf/issues/974#issuecomment-3054525004
 
-            <Page renderMode='canvas' pageNumber={1} />
-        </Document>
-*/}
-            <Document file={pdfUrl} key={crypto.randomUUID()}>
+            <Document file={pdfUrl} key={generateRandomId()}>
                 {/* I used key here although there is only one component to load because of a bug that
             happens when a user updates the form with fast speed, this could probably be solved otherwise by
             waiting for the file to fully load the last keystroke change, but I believe this looks better.
