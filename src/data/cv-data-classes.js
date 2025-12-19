@@ -25,8 +25,17 @@ export function educationData(schoolName, degreeName, startDate, endDate, achiev
     this.degreeName = degreeName;
     this.startDate = startDate;
     this.endDate = endDate;
-    this.achievements = achievements;
+
+    this.achievements = achievements.map(
+        achievement=>{
+            return {
+                achievementText : achievement,
+                achievementKey : generateRandomId()
+            }
+        }
+    );
     this.key = generateRandomId();
+
 }
 
 export function skillsData(skillName){

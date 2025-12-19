@@ -106,3 +106,23 @@
     color: #fff;
     text-decoration: none;
 }
+
+/* FORM TODO most of the form css is in app.css, must be refactored /*
+ */
+.school-input{
+    display: flex;
+    flex-direction: row;
+}
+.school-name{
+    margin-right: 1em;
+}
+.school-name, .school-degree{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+.delete-button{
+    cursor: pointer;
+}

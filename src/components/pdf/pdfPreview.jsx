@@ -40,7 +40,6 @@ const PDFViewer = (props) => {
 
         pdf(child).toBlob().then(blob => {
             setPdfUrl(URL.createObjectURL(blob));
-            console.log("doing");
 
 
         })
@@ -53,7 +52,7 @@ const PDFViewer = (props) => {
 
 
     return (
-        <div>
+        <div  className ={"pdf-viewer"}>
 {/*
         <Document file={pdfUrl} key={crypto.randomUUID()}>
              I used key here although there is only one component to load because of a bug that

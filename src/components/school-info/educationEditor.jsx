@@ -10,14 +10,16 @@ function showDatePicker(index){
 
 
 
-function EducationEditor(props){
-
-
+function EducationEditor({keyOfElementToEdit, callback, data}){
 
     function additem(){
-        props.callback(false);
+        callback(false);
     }
-
+    let element = data[0].find(
+        entry =>{
+            return entry.key == keyOfElementToEdit;
+        }
+    )
 
     return (
         <div className={"data-modifier-box"}>
@@ -25,9 +27,18 @@ function EducationEditor(props){
             <h3 className={"data-modifier-title"}> Experience</h3>
 */}
 
-            <div className={"school-input horizontal-element-input"}>
-                <label htmlFor={"school-name-input"}> School name </label>
-                <input id={"school-name-input"} placeholder={"Hochschule Darmstadt"} defaultValue={props.element?props.element.schoolName:""}/>
+            <div className={"school-input"}>
+
+                <div className={"school-name"}>
+                    <label htmlFor={"school-name-input"}> School name </label>
+                    <input id={"school-name-input"} placeholder={"Hochschule Darmstadt"} defaultValue={element?element.schoolName:""}/>
+                </div>
+
+                <div className={"school-degree"}>
+                    <label htmlFor={"school-degree-input"}> School name </label>
+                    <input id={"school-degree-input"} placeholder={"Computer science"} defaultValue={element?element.degreeName:""}/>
+                </div>
+
             </div>
 
 
@@ -51,9 +62,9 @@ function EducationEditor(props){
             </div>
 
             <label> Achievements </label>
-            <Achievements/>
+            <Achievements data={data} keyOfElementToEdit = {keyOfElementToEdit} />
 
-            <button onClick={additem} className={"done-button"}>
+            <button onClick={additem} className={"done-button"} >
                 Done
             </button>
 

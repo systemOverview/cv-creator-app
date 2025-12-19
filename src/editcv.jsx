@@ -19,6 +19,7 @@ function EditCvSection({PersonalData, educationData, experienceData, skillsData,
     const [isEditingExperience, setEditingExperience] = useState(false);
     const [experienceList, setExperienceList] = useState(experienceExamples)
     const [skillsList, setSkillsList] = useState(skillsExamples)
+
     return (
 /*
         PersonalData = {[personalData, setPersonalData]}
@@ -27,10 +28,10 @@ function EditCvSection({PersonalData, educationData, experienceData, skillsData,
 
         <section id="pdf" className={"edit-cv-section"}>
             <PersonalInfoSection data={PersonalData} title={"Personal information"} icon={personalIcon}/>
-            <CvSectionComponent data={educationData} title={"Professional experience"} icon={jobIcon}
-                                editor={ExperienceEditor}/>
-            <CvSectionComponent data={experienceData} title={"Education"} icon={educationIcon}
-                                editor={EducationEditor}/>
+            <CvSectionComponent data={educationData} title={"Education"} icon={educationIcon}
+                                Editor={EducationEditor}/>
+            <CvSectionComponent data={experienceData} title={"Professional experience"} icon={jobIcon}
+                                Editor={ExperienceEditor}/>
             <CvSectionComponent skills={skillsData} setData={setSkillsList} title={"Skills"} icon={skillsIcon}
                                 editor={SkillsEditor}/>
 

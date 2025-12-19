@@ -3,20 +3,26 @@ import {useState, memo} from "react";
 import {experienceData} from "../data/cv-data-classes.js";
 import Items from "./items/Items.jsx";
 
-function CvSectionComponent(props) {
+function CvSectionComponent({data,title,icon,Editor}) {
     const [isSectionExpanded, setSectionExpansion] = useState(false);
     const [isEditing, setEditing] = useState(false);
-    const [elementToEdit, setElementToEdit] = useState(null); // pass the element to edit if the user wants to edit an existing element, null to create a new one
-// title
+    const [keyOfElementToEdit, setKeyOfElementToEdit] = useState(null);
+
+    /*
+         pass the element to edit if the user wants
+         to edit an existing element,
+         null to create a new one title
+    */
+
     if (isEditing){
         // editor is the component that handles taking the item input
-        return <props.editor element = {elementToEdit} callback = {setEditing}> </props.editor>; // if the user clicks on add item, it switches to the editing part of the section
+        return <Editor keyOfElementToEdit = {keyOfElementToEdit} data = {data} callback = {setEditing}> </Editor>; // if the user clicks on add item, it switches to the editing part of the section
     }
     return <div className={"cv-section"}>
         <div className={"cv-section-info"}>
             <div className={"cv-section-info-title"}>
-                <img className={"icon"} src={props.icon}/>
-                <h3> {props.title} </h3>
+                <img className={"icon"} src={icon}/>
+                <h3> {title} </h3>
             </div>
             <div className={"dropdown"}>
                 <button onClick={
@@ -26,8 +32,10 @@ function CvSectionComponent(props) {
             </div>
         </div>
         <div className={`items-holder ${isSectionExpanded ? "items-open" : "items-closed"}`}>
-
-            {props.data?<Items items={props.data} callback={setEditing} setElement={setElementToEdit} > </Items>:null}
+            {/* data is an array of the data itself, and a state function, items generator only needs the data
+            therefore i passed only the first element of the array
+            */}
+            {data?<Items items={data[0]} callback={setEditing} setKeyOfElementToEdit={setKeyOfElementToEdit}> </Items>:null}
 {/*
             {props.title =='Skills'?<props.editor skills = {props.data[0]} setData = {props.setData}> </props.editor>:null}
 */}

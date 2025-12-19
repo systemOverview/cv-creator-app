@@ -35,7 +35,7 @@ function Achievements({achievementsList}){
                 <Text style = {styles.bulletPoint} >•</Text>
 
 
-                <Text>{achievement}</Text>
+                <Text>{achievement.achievementText}</Text>
             </View>)
         }
     )

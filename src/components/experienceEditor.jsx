@@ -54,7 +54,7 @@ function ExperienceEditor(props){
                 </div>
             </div>
             <label> Achievements </label>
-            <Achievements/>
+            <Achievements  data={props.data} achievements = {props.element.achievements}/>
 
             <button onClick={additem} className={"done-button"}>
                 Done

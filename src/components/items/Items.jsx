@@ -3,29 +3,28 @@ import pen from "/src/assets/pen.svg"
 import "./items.css"
 import ExperienceEditor from "../experienceEditor.jsx";
 
-function ItemsGenerator(props){
+function ItemsGenerator({items, setEditing, setKeyOfElementToEdit}){
     function editItem(item){
-        props.setElement(item);
-        props.setEditing(true);
+        setEditing(true);
+        setKeyOfElementToEdit(item.key)
 
     };
 
-    let itemsData = props.items
 
     return (
-        props.items[0][0].map(
+        items.map(
             (item) =>{
-                let itemKeys = Object.values(item)
                 return (
                 <div key={item.key} className={"item"}>
-                    <h3> {itemKeys[0]} </h3>
 
+                    {/* an item here could be a school or work experience
+                    so i fetch the first value instead of using a key
+                    because the key names differs
+                    */}
+                    <h3> {Object.values(item)[0]} </h3>
                     <div className={"edit-icon"}>
-
                         <img onClick={()=>editItem(item)} src={pen}  className={"icon"}/>
-
                     </div>
-
                 </div>
                 );
             }
@@ -33,14 +32,15 @@ function ItemsGenerator(props){
     )
 }
 
-function Items(props){
+function Items({items,callback, setKeyOfElementToEdit}){
+    console.log(setKeyOfElementToEdit)
     return (
         <div>
-            <ItemsGenerator items={props.items} setEditing ={props.callback} setElement ={props.setElement}> </ItemsGenerator>
+            <ItemsGenerator items={items} setEditing ={callback} setKeyOfElementToEdit ={setKeyOfElementToEdit}> </ItemsGenerator>
             <div className={`add-item`}>
                 <button onClick={(
                     ()=>{
-                        props.callback(true)
+                        callback(true)
                     }
                 )} className={`add-item-button`}> Add item</button>
             </div>

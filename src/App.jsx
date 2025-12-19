@@ -22,6 +22,8 @@ import jobIcon from "./assets/job.svg";
 
 
 const App = () => {
+
+
     const [name, setName] = useState("nsull");
     const [personalData, setPersonalData] = useState(firstPersonalDataExample)
     const [educationData,setEducationData] = useState(educationExamples)
@@ -37,17 +39,15 @@ const App = () => {
         personalData={personalData}
         educationData={educationData}>
     </MyDocument>
-
     return(
     <div className={"container"}>
 
     <div className={"left-container"}>
         <Editcv
-
             PersonalData = {[personalData, setPersonalData]}
-            educationData = {[[educationData,setEducationData]]}
-            experienceData = {[[experienceData,setExperienceData]]}
-            skillsData = {[[skillsData,setSkillsData]]}
+            educationData = {[educationData,setEducationData]}
+            experienceData = {[experienceData,setExperienceData]}
+            skillsData = {[skillsData,setSkillsData]}
             >
         </Editcv>
 

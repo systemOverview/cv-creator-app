@@ -185,10 +185,10 @@ label{
     min-height: 100px;
 }
 
-.pdf-viewer{
+/*.pdf-viewer{
     width: 50%;
     background-color: red;
-}
+}*/
 
 .download-link{
     background-color: red;
@@ -245,4 +245,22 @@ button {
     display: block;
     width: 30%;
     min-width: fit-content;
+}
+
+/*test*/
+
+@media only screen and (max-width: 800px) {
+    body {
+        background-color: lightblue;
+    }
+
+
+    .left-container {
+        min-width: 100%;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
 }
