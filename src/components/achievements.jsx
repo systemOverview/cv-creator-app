@@ -1,11 +1,10 @@
 import {getRandomInt} from "./helper.js";
 import {achievementsList} from "../data/cv-data-examples.js";
-import {memo} from "react";
-import {generateRandomId} from "../components/helper.js"
-
-
+import {memo, useEffect, useState} from "react";
+import {generateRandomId} from "./helper.js"
 
 const CreateAchievements = memo(function CreateAchievements(props){
+
     let currentData = props.data [0];
     let setterFunction = props.data [1]; // The function responsible for changing the state of data, passed from the main app component
     let element = currentData.find(
@@ -14,14 +13,39 @@ const CreateAchievements = memo(function CreateAchievements(props){
         }
     )
     let achievements = element.achievements;
-
-    if (achievements==null){ // This function generates random placeholders for the achievements inputs if no entries are set
-        achievements = [];
-        for (let i=0;i<3; i++){
-            achievements.push(achievementsList[getRandomInt(0,achievementsList.length)])
+    function addAchievement(){
+        let newAchievement = {
+            achievementText : "",
+            achievementKey : generateRandomId(),
+            achievementPlaceholder : achievementsList[getRandomInt(0,achievementsList.length-1)],
         }
-
+        console.log(achievements)
+        console.log(element.achievements)
+        let updatedAchievementsList = [...achievements, newAchievement ];
+        let updatedElement = {...element, achievements: updatedAchievementsList};
+        let updatedDataObject = currentData.map(
+            (entryElement)=>{
+                if (entryElement.key==props.keyOfElementToEdit){
+                    return updatedElement;
+                }
+                return entryElement;
+            }
+        )
+        setterFunction(updatedDataObject);
     }
+
+
+    useEffect(() => {
+        var addAchievementButton = document.getElementById(props.keyOfElementToEdit);
+        addAchievementButton.addEventListener("click",
+            ()=>{
+            addAchievement()
+            }
+        )
+
+
+
+    }, [achievements]);
 
     function deleteAchievement (keyOfAchievementToDelete) {
         let updatedAchievementsList = achievements.filter(
@@ -45,7 +69,6 @@ const CreateAchievements = memo(function CreateAchievements(props){
                return (achievement.achievementKey==keyOfAchievementToUpdate?{...achievement, achievementText : newAchievementValue}:achievement);
             }
         )
-        console.log(updatedAchievementsList)
 
         let newElement = {...element, achievements : updatedAchievementsList}
         let newData = currentData.map(
@@ -58,14 +81,16 @@ const CreateAchievements = memo(function CreateAchievements(props){
 
     }
 
+
     return (
         achievements.map((achievement, index)=>{
+        counter++;
             return (
             <div className={"achievement"} key = {achievement.achievementKey}>
                 <label htmlFor={index}>•</label>
                 <input
                        id={index}
-                       placeholder={achievement}
+                       placeholder={achievement.achievementPlaceholder}
                        defaultValue={achievements?achievement.achievementText:""}
                        onChange={(e)=>{updateAchievement(achievement.achievementKey, e.target.value);}}
 
@@ -85,7 +110,11 @@ function achievements({data,keyOfElementToEdit}){
     return (
     <div className={"achievements-input"}>
         <CreateAchievements data={data} keyOfElementToEdit = {keyOfElementToEdit}> </CreateAchievements>
-            <button className={"add-achievement-button"}>
+            <button
+                className={"add-achievement-button"}
+                id={keyOfElementToEdit}
+
+            >
                 <svg className={"add-achievement-icon icon"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#63E6BE" d="M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 160-160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l160 0 0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-160z"/></svg>
                 Add achievement
             </button>

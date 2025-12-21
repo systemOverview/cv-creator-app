@@ -1,5 +1,6 @@
 import {generateRandomId} from "../components/helper.js";
-
+import {getRandomInt} from "../components/helper.js";
+import {achievementsList} from "./cv-data-examples.js"
 
 export function personalData (name, title, photo, email, phoneNumber, address){
 
@@ -30,7 +31,8 @@ export function educationData(schoolName, degreeName, startDate, endDate, achiev
         achievement=>{
             return {
                 achievementText : achievement,
-                achievementKey : generateRandomId()
+                achievementKey : generateRandomId(),
+                achievementPlaceholder : achievementsList[getRandomInt(0,achievementsList.length-1)]
             }
         }
     );

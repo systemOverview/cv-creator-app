@@ -65,6 +65,10 @@ let secondEducationExample = new educationData("TU Munich", "Masters in Computer
     "Streamlined company operations, reducing overhead costs by 15% through process automation.",
 ])
 
+/*
+let thirdEducationExample = new educationData("TU Munich", "Masters in Computer science", "12/2022", "07/2025", null)
+*/
+
 export const educationExamples = [
     firstEducationExample,
     secondEducationExample
