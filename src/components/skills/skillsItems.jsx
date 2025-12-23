@@ -12,9 +12,10 @@ function SkillsItemsGenerator(props){
                     <div key={item.key} className={"item"}>
                         <h3> {itemKeys[0]} </h3>
                         <div className={"edit-icon"}>
-                                <img onClick={()=>{
-                                    props.setData(skillsList => skillsList.filter(skillItem => skillItem.skillName !== item.skillName))
-                                }} src={trash}  className={"icon"}/>
+                                <img
+                                    onClick={()=>{item.removeSkill()}}
+                                    src={trash}
+                                    className={"icon"}/>
                             </div>
                     </div>
                 );

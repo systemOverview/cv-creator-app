@@ -1,10 +1,11 @@
-import {generateRandomId} from "../components/helper.js";
 import {experienceData} from "./classes-files/experience-data-class.js"
 import {educationData} from "./classes-files/education-data-class.js"
+import {skillsData} from "./classes-files/skills-data-class.js"
 
 let dataClasses = {
     experienceData : experienceData,
     educationData: educationData,
+    skillsData : skillsData
 }
 
 export class personalData {
@@ -22,10 +23,5 @@ export class personalData {
 }
 
 
-
-export function skillsData(skillName){
-    this.skillName = skillName;
-    this.key = generateRandomId();
-}
 
 export default dataClasses

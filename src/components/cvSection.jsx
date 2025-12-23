@@ -2,7 +2,7 @@ import angleDownIcon from "../assets/angle-down.svg";
 import {useState, memo} from "react";
 import Items from "./items/Items.jsx";
 
-function CvSectionComponent({data,title,icon,Editor}) {
+function CvSectionComponent({data, skills, title,icon,Editor}) {
     const [isSectionExpanded, setSectionExpansion] = useState(false);
     const [isEditing, setEditing] = useState(false);
     const [keyOfElementToEdit, setKeyOfElementToEdit] = useState(null);
@@ -10,7 +10,7 @@ function CvSectionComponent({data,title,icon,Editor}) {
     /*
          pass the element to edit if the user wants
          to edit an existing element,
-         null to create a new one title
+         null to create a new one
     */
     if (isEditing){
         // editor is the component that handles taking the item input
@@ -34,10 +34,9 @@ function CvSectionComponent({data,title,icon,Editor}) {
             therefore i passed only the first element of the array
             */}
             {data?<Items data={data} callback={setEditing} setKeyOfElementToEdit={setKeyOfElementToEdit}> </Items>:null}
+            {title =='Skills'?<Editor skills = {skills[0]}> </Editor>:null}
 
-{/*
-            {title =='Skills'?<Editor skills = {data[0]} setData = {setData}> </Editor>:null}
-*/}
+
 
 
 

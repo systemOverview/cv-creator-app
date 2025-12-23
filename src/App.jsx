@@ -28,9 +28,20 @@ const App = () => {
     const [educationData,setEducationData] = useState(educationExamples)
     const [experienceData, setExperienceData] = useState(experienceExamples)
     const [skillsData, setSkillsData] = useState(skillsExamples)
+    console.log(skillsData)
     useEffect(() => {
-        experienceData[0].setterFunction = setExperienceData;
-        educationData[0].setterFunction = setEducationData;
+        // Link the state setting function for all objects
+        educationData.forEach(
+            item=>item.setterFunction = setEducationData
+        )
+
+        experienceData.forEach(
+            item=>item.setterFunction = setExperienceData
+        )
+
+        skillsData.forEach(
+            item=>item.setterFunction = setSkillsData
+        )
     }, []);
     let arr = [1];
 

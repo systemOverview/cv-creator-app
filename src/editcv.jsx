@@ -19,6 +19,9 @@ function EditCvSection({PersonalData, educationData, experienceData, skillsData,
     const [isEditingExperience, setEditingExperience] = useState(false);
     const [experienceList, setExperienceList] = useState(experienceExamples)
     const [skillsList, setSkillsList] = useState(skillsExamples)
+    console.log(setSkillsList)
+    console.log(skillsData)
+    console.log(SkillsEditor)
     return (
 
 
@@ -30,7 +33,7 @@ function EditCvSection({PersonalData, educationData, experienceData, skillsData,
             <CvSectionComponent data={experienceData} title={"Professional experience"} icon={jobIcon}
                                 Editor={ExperienceEditor}/>
             <CvSectionComponent skills={skillsData} setData={setSkillsList} title={"Skills"} icon={skillsIcon}
-                                editor={SkillsEditor}/>
+                                Editor={SkillsEditor}/>
 
         </section>
     )
