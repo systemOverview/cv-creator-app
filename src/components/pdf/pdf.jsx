@@ -1,6 +1,8 @@
 import {Canvas, Document, Page, StyleSheet, View, Text} from '@react-pdf/renderer';
 import CVHeader from "./pdf-components/pdf-header-section/CVHeader.jsx";
 import CVEducation from "./pdf-components/pdf-education-section/CVEducation.jsx";
+import CVExperience from "./pdf-components/pdf-experience-section/CVExperience.jsx";
+
 import SectionDivider from "./pdf-components/SectionDivider.jsx";
 import {useState, useContext} from "react";
 const styles = StyleSheet.create({
@@ -24,10 +26,9 @@ const styles = StyleSheet.create({
 
 
 // Create Document Component
-const MyDocument = ({personalData,educationData}) => {
+const MyDocument = ({personalData,educationData, experienceData,skillData}) => {
     let {name, title, email, phoneNumber, address} = personalData;
     const [fullName, setFullName] = useState("null");
-
     return (
     <Document>
         <Page size="A4" style={styles.page}>
@@ -52,8 +53,12 @@ const MyDocument = ({personalData,educationData}) => {
                 <CVEducation
                     educationData = {educationData}
                 />
+
             </View>
 
+            <View><CVExperience
+                experienceData={experienceData}>
+            </CVExperience></View>
 
         </Page>
     </Document>

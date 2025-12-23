@@ -1,6 +1,6 @@
-import DatePicker from "./date.jsx";
-import date from "./date.jsx";
-import Achievements from "./achievements.jsx";
+import DatePicker from "../date.jsx";
+import date from "../date.jsx";
+import Achievements from "../achievements.jsx";
 import {useState} from "react";
 
 function showDatePicker(index){
@@ -10,34 +10,70 @@ function showDatePicker(index){
 
 
 
-function ExperienceEditor(props){
-
-
-
+function ExperienceEditor({keyOfElementToEdit, callback, data}){
+    console.log(data[0])
     function additem(){
-        props.callback(false);
+        callback(false);
     }
-    let test = "ah";
-/*    useEffect(() => {
+    let element;
 
-    }, []);*/
+     element = data[0].find(
+        experienceEntry =>{
+            return experienceEntry.key == keyOfElementToEdit;
+        }
+    )
+
+
+    let experienceData = data[0];
+    let setExperienceData = data[1];
+
+    function updatedExperienceInfo(attributeToChange, newValue, key) {
+        element.companyName = newValue
+
+
+    }
 
     return (
         <div className={"data-modifier-box"}>
 {/*
+
             <h3 className={"data-modifier-title"}> Experience</h3>
 */}
+
 
             <div class={"horizontal-multiple-input-holder"}>
                 <div className={"company-input horizontal-element-input"}>
                     <label htmlFor="company-name-input"> Company name </label>
-                    <input id="company-name-input" className={"text-input"} placeholder={"Google"} defaultValue={props.element?props.element.companyLocation:""}/>
+                    <input
+                        id="company-name-input"
+                        className={"text-input"} /*TODO : is this class necessary? compare to education editor*/
+                        placeholder={"Google"}
+                        defaultValue={element?element.companyName:""}
+                        onChange={(e)=>{updatedExperienceInfo("companyName", e.target.value, keyOfElementToEdit);}}
+
+                    />
                 </div>
 
                 <div className={"company-location horizontal-element-input"}>
                     <label htmlFor={"company-location-input"}> Company location </label>
-                    <input id={"company-location-input"} placeholder={"Munich, Germany."} defaultValue={props.element?props.element.companyLocation:""}/>
+                    <input id={"company-location-input"}
+                           placeholder={"Munich, Germany."}
+                           defaultValue={element?element.companyLocation:""}
+                           onChange={(e)=>{element.companyLocation = e.target.value}}
+
+                    />
                 </div>
+            </div>
+            <div className={"company-input horizontal-element-input"}>
+                <label htmlFor="company-name-input"> Title </label>
+                <input
+                    id="company-name-input"
+                    className={"text-input"}
+                    placeholder={"Data scientist"}
+                    defaultValue={element?element.title:""}
+                    onChange={(e)=>{element.title = e.target.value}}
+
+                />
             </div>
 
             <div className={"dates-input"}>
@@ -54,7 +90,7 @@ function ExperienceEditor(props){
                 </div>
             </div>
             <label> Achievements </label>
-            <Achievements  data={props.data} achievements = {props.element.achievements}/>
+            <Achievements  data={data} keyOfElementToEdit = {keyOfElementToEdit}/>
 
             <button onClick={additem} className={"done-button"}>
                 Done

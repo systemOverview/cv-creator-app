@@ -15,7 +15,6 @@ import {generateRandomExample} from "./components/helper.js"
 import PersonalInfoSection from "./components/personal-info/personalInfoSection.jsx";
 import personalIcon from "./assets/personal.svg";
 import CvSectionComponent from "./components/cvSection.jsx";
-import ExperienceEditor from "./components/experienceEditor.jsx";
 import {getRandomInt} from "./components/helper.js"
 import jobIcon from "./assets/job.svg";
 
@@ -29,15 +28,16 @@ const App = () => {
     const [educationData,setEducationData] = useState(educationExamples)
     const [experienceData, setExperienceData] = useState(experienceExamples)
     const [skillsData, setSkillsData] = useState(skillsExamples)
-    const [pdfLink, setPdfLink] = useState(null);
-    const [test, setTest] = useState(1);
     useEffect(() => {
-        //Runs only on the first render
+        experienceData[0].setterFunction = setExperienceData;
     }, []);
+    let arr = [1];
 
     let CV =             <MyDocument
         personalData={personalData}
-        educationData={educationData}>
+        educationData={educationData}
+        experienceData={experienceData}
+    >
     </MyDocument>
     return(
     <div className={"container"}>
@@ -55,22 +55,11 @@ const App = () => {
 
         </PDFDownloaderButton>
     </div>
-        {/* setPdfLink = {setPdfLink}*/}
 
-        <PDFViewer setPdfLink = {setTest}>
+        <PDFViewer>
             {CV}
         </PDFViewer>
 
-{/*
-
-*/}
-
-{/*
-
-    <div>
-        <CreatePdfUrl file = {CV}> </CreatePdfUrl>
-    </div>
-*/}
 
 
 

@@ -1,8 +1,9 @@
 import {personalData} from "./cv-data-classes.js";
-import {experienceData} from "./cv-data-classes.js";
+import dataClasses from "./cv-data-classes.js";
 import {educationData} from "./cv-data-classes.js";
 import {skillsData} from "./cv-data-classes.js";
 import {getRandomInt} from "../components/helper.js";
+let experienceData = dataClasses.experienceData;
 export const achievementsList = [
     "Increased sales by 25% within the first year by implementing a new customer acquisition strategy.",
     "Led a team of 5 to complete a project 2 weeks ahead of schedule, exceeding client expectations.",
@@ -34,13 +35,13 @@ export const titleExamples= [
 export const firstPersonalDataExample = new personalData("John Doe", titleExamples[getRandomInt(0,titleExamples.length)], null, "John.doe@gmail.com", "0123456789", "Marktplatz 15")
 
 // experience examples
-let firstExperienceExample = new experienceData("Google", "Munich", "12/2022", "07/2025", [
+let firstExperienceExample = new experienceData("Google", "Munich", "Junior Fullstack developer", "12/2022", "07/2025", [
     "Increased sales by 25% within the first year by implementing a new customer acquisition strategy.",
     "Led a team of 5 to complete a project 2 weeks ahead of schedule, exceeding client expectations.",
     "Streamlined company operations, reducing overhead costs by 15% through process automation.",
 ])
 
-let secondExperienceExample = new experienceData("Facebook", "California", "12/2022", "07/2025", [
+let secondExperienceExample = new experienceData("Facebook", "California", "Product Manager", "12/2022", "07/2025", [
     "Increased sales by 25% within the first year by implementing a new customer acquisition strategy.",
     "Led a team of 5 to complete a project 2 weeks ahead of schedule, exceeding client expectations.",
     "Streamlined company operations, reducing overhead costs by 15% through process automation.",
@@ -65,6 +66,9 @@ let secondEducationExample = new educationData("TU Munich", "Masters in Computer
     "Streamlined company operations, reducing overhead costs by 15% through process automation.",
 ])
 
+export let newEducationHolder = new experienceData(
+    "", "", "","","",[]
+)
 /*
 let thirdEducationExample = new educationData("TU Munich", "Masters in Computer science", "12/2022", "07/2025", null)
 */
@@ -73,7 +77,6 @@ export const educationExamples = [
     firstEducationExample,
     secondEducationExample
 ]
-
 // skills Examples
 
 let firstSkillExample = new skillsData("C++")

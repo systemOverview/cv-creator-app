@@ -2,7 +2,7 @@ import "./styles/editcv.css"
 import { jsPDF } from "jsPDF"
 import {useState, memo} from 'react'
 import CvSectionComponent from "./components/cvSection.jsx";
-import ExperienceEditor from "./components/experienceEditor.jsx";
+import ExperienceEditor from "./components/experience-info/experienceEditor.jsx";
 import PersonalInfoSection from "./components/personal-info/personalInfoSection.jsx";
 import EducationEditor from "./components/school-info/educationEditor.jsx";
 import SkillsEditor from "./components/skills/skillsEditor.jsx";
@@ -19,11 +19,8 @@ function EditCvSection({PersonalData, educationData, experienceData, skillsData,
     const [isEditingExperience, setEditingExperience] = useState(false);
     const [experienceList, setExperienceList] = useState(experienceExamples)
     const [skillsList, setSkillsList] = useState(skillsExamples)
-
     return (
-/*
-        PersonalData = {[personalData, setPersonalData]}
-*/
+
 
 
         <section id="pdf" className={"edit-cv-section"}>

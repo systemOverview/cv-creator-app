@@ -1,25 +1,27 @@
-import {generateRandomId} from "../components/helper.js";
-import {getRandomInt} from "../components/helper.js";
+import {generateRandomId, getRandomInt} from "../components/helper.js";
 import {achievementsList} from "./cv-data-examples.js"
+import {experienceData} from "./classes-files/experience-data-class.js"
 
-export function personalData (name, title, photo, email, phoneNumber, address){
-
-    this.name = name;
-    this.title = title;
-    this.photo = photo;
-    this.email = email;
-    this.phoneNumber = phoneNumber;
-    this.address = address;
+let dataClasses = {
+    experienceData : experienceData
 }
 
-export function experienceData(companyName, companyLocation, startDate, endDate, achievements){
-    this.companyName = companyName;
-    this.companyLocation = companyLocation;
-    this.startDate = startDate;
-    this.endDate = endDate;
-    this.achievements = achievements;
-    this.key = generateRandomId();
+export default dataClasses
+export class personalData {
+    constructor(name, title, photo, email, phoneNumber, address) {
+
+        this.name = name;
+        this.title = title;
+        this.photo = photo;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+
+
 }
+
+
 
 export function educationData(schoolName, degreeName, startDate, endDate, achievements){
     this.schoolName = schoolName;

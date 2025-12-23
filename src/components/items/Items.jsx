@@ -1,8 +1,8 @@
 import {useState} from "react";
 import pen from "/src/assets/pen.svg"
 import "./items.css"
-import ExperienceEditor from "../experienceEditor.jsx";
-
+import ExperienceEditor from "../experience-info/experienceEditor.jsx";
+import {newEducationHolder} from "../../data/cv-data-examples.js"
 function ItemsGenerator({items, setEditing, setKeyOfElementToEdit}){
     function editItem(item){
         setEditing(true);
@@ -32,14 +32,30 @@ function ItemsGenerator({items, setEditing, setKeyOfElementToEdit}){
     )
 }
 
-function Items({items,callback, setKeyOfElementToEdit}){
+function Items({data,callback, setKeyOfElementToEdit}){
+    let setDataFunction = data[1] // the functions responsible for updating the data state
+    function addItem(){
+/*
+        callback(true)
+*/
+        setDataFunction(
+            prev => [...prev, newEducationHolder]
+        )
+        setKeyOfElementToEdit(newEducationHolder.key)
+        callback(true)
+
+/*
+        setKeyOfElementToEdit(newEducationHolder)
+*/
+
+    }
     return (
         <div>
-            <ItemsGenerator items={items} setEditing ={callback} setKeyOfElementToEdit ={setKeyOfElementToEdit}> </ItemsGenerator>
+            <ItemsGenerator items={data[0]} setEditing ={callback} setKeyOfElementToEdit ={setKeyOfElementToEdit}> </ItemsGenerator>
             <div className={`add-item`}>
                 <button onClick={(
                     ()=>{
-                        callback(true)
+                        addItem()
                     }
                 )} className={`add-item-button`}> Add item</button>
             </div>

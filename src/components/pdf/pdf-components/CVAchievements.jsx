@@ -24,7 +24,6 @@ let styles = StyleSheet.create(
     }
 )
 function Achievements({achievementsList}){
-
     return (
         achievementsList.map(
         (achievement)=>{

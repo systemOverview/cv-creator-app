@@ -37,9 +37,7 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
 
     return (
         <div className={"data-modifier-box"}>
-            {/*
-            <h3 className={"data-modifier-title"}> Experience</h3>
-*/}
+
 
             <div className={"school-input"}>
 

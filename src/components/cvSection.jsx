@@ -1,6 +1,5 @@
 import angleDownIcon from "../assets/angle-down.svg";
 import {useState, memo} from "react";
-import {experienceData} from "../data/cv-data-classes.js";
 import Items from "./items/Items.jsx";
 
 function CvSectionComponent({data,title,icon,Editor}) {
@@ -13,7 +12,6 @@ function CvSectionComponent({data,title,icon,Editor}) {
          to edit an existing element,
          null to create a new one title
     */
-
     if (isEditing){
         // editor is the component that handles taking the item input
         return <Editor keyOfElementToEdit = {keyOfElementToEdit} data = {data} callback = {setEditing}> </Editor>; // if the user clicks on add item, it switches to the editing part of the section
@@ -35,10 +33,12 @@ function CvSectionComponent({data,title,icon,Editor}) {
             {/* data is an array of the data itself, and a state function, items generator only needs the data
             therefore i passed only the first element of the array
             */}
-            {data?<Items items={data[0]} callback={setEditing} setKeyOfElementToEdit={setKeyOfElementToEdit}> </Items>:null}
+            {data?<Items data={data} callback={setEditing} setKeyOfElementToEdit={setKeyOfElementToEdit}> </Items>:null}
+
 {/*
-            {props.title =='Skills'?<props.editor skills = {props.data[0]} setData = {props.setData}> </props.editor>:null}
+            {title =='Skills'?<Editor skills = {data[0]} setData = {setData}> </Editor>:null}
 */}
+
 
 
         </div>

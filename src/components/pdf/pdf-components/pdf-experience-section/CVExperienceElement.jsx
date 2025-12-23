@@ -5,20 +5,20 @@ let styles = StyleSheet.create(
     {
         elementHeader : {
             marginTop : 10,
-           display : "flex",
+            display : "flex",
             flexDirection:"row",
-           justifyContent: "space-between",
+            justifyContent: "space-between",
             fontWeight : "bold",
 
         },
         date : {
             textAlign : "right",
         },
-        degreeName : {
+        title : {
             fontWeight : "bold",
-/*
-            fontSize : 13,
-*/
+            /*
+                        fontSize : 13,
+            */
             marginTop : 5,
             marginBottom : 2,
 
@@ -26,7 +26,7 @@ let styles = StyleSheet.create(
 
     }
 )
-function CVEducationElement({element, index}){
+function CVExperienceElement({element, index}){
     let marginTop = 0;
     if (index>0){
         marginTop = 5; // only apply margin top for multiple elements starting from the second one
@@ -34,25 +34,15 @@ function CVEducationElement({element, index}){
     return(
         <View style = {{marginTop: marginTop}}>
             <View style = {styles.elementHeader}>
-                <Text> {element.schoolName} </Text>
+                <Text> {element.companyName} </Text>
                 <Text style={styles.date}> {element.startDate} - {element.endDate} </Text>
             </View>
 
-            <Text style = {styles.degreeName}> {element.degreeName} </Text>
+            <Text style = {styles.title}> {element.title} </Text>
             <Achievements achievementsList = {element.achievements}/>
         </View>
     )
 }
 
-export default CVEducationElement
 
-/*
-export function educationData(schoolName, degreeName, startDate, endDate, achievements){
-    this.schoolName = schoolName;
-    this.degreeName = degreeName;
-    this.startDate = startDate;
-    this.endDate = endDate;
-    this.achievements = achievements;
-    this.key = generateRandomId();
-}
-*/
+export default CVExperienceElement
