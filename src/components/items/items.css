@@ -12,10 +12,13 @@
     cursor: pointer;
 }
 
-.edit-icon{
+.edit-icons{
     margin-left: auto;
     display: flex;
     align-items: center;
 }
 
 
+.edit-icons img:first-child{
+    margin-right: 0.75em;
+}

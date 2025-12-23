@@ -69,7 +69,6 @@ export class educationData {
 
 
     set schoolName(value) {
-        console.log(value)
         this.changeObjectInData("_schoolName", value)
     }
 

@@ -17,7 +17,6 @@ const CreateAchievements = memo(function CreateAchievements(props){
         }
     )
 
-    console.log(currentData);
 
     let achievements = element.achievements;
 

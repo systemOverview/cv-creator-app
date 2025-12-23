@@ -8,9 +8,7 @@ export class skillsData {
     }
 
     get skillName() {
-/*
         return this._skillName;
-*/
     }
 
     set skillName(value) {

@@ -6,7 +6,6 @@ function CvSectionComponent({data, skills, title,icon,Editor}) {
     const [isSectionExpanded, setSectionExpansion] = useState(false);
     const [isEditing, setEditing] = useState(false);
     const [keyOfElementToEdit, setKeyOfElementToEdit] = useState(null);
-
     /*
          pass the element to edit if the user wants
          to edit an existing element,
@@ -33,7 +32,7 @@ function CvSectionComponent({data, skills, title,icon,Editor}) {
             {/* data is an array of the data itself, and a state function, items generator only needs the data
             therefore i passed only the first element of the array
             */}
-            {data?<Items data={data} callback={setEditing} setKeyOfElementToEdit={setKeyOfElementToEdit}> </Items>:null}
+            {data?<Items data={data} callback={setEditing} setKeyOfElementToEdit={setKeyOfElementToEdit} EditorName = {Editor.name}> </Items>:null}
             {title =='Skills'?<Editor skills = {skills[0]}> </Editor>:null}
 
 

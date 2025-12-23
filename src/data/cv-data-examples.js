@@ -66,9 +66,20 @@ let secondEducationExample = new educationData("TU Munich", "Masters in Computer
     "Streamlined company operations, reducing overhead costs by 15% through process automation.",
 ])
 
-export let newEducationHolder = new experienceData(
-    "", "", "","","",[]
-)
+function generateNewExperienceHolder(){
+    return (new experienceData("", "", "","","",[]))
+}
+
+function generateNewEducationHolder() {
+    return (new educationData("", "", "","",[]))
+}
+
+export let newDataHolders = {
+    newEducationGenerator : generateNewEducationHolder,
+    newExperienceGenerator : generateNewExperienceHolder
+}
+
+
 /*
 let thirdEducationExample = new educationData("TU Munich", "Masters in Computer science", "12/2022", "07/2025", null)
 */

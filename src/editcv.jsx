@@ -19,9 +19,6 @@ function EditCvSection({PersonalData, educationData, experienceData, skillsData,
     const [isEditingExperience, setEditingExperience] = useState(false);
     const [experienceList, setExperienceList] = useState(experienceExamples)
     const [skillsList, setSkillsList] = useState(skillsExamples)
-    console.log(setSkillsList)
-    console.log(skillsData)
-    console.log(SkillsEditor)
     return (
 
 

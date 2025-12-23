@@ -9,7 +9,6 @@ function SkillsEditor(props){
             <div className={"skills-input-section item"}>
                 <input className={"skill-input"} id={"skill-input"}type={"text"} placeholder={"C++"}/>
                 <button onClick={()=>{
-                    console.log("tsst")
 /*
                     let newSkill = new skillsData(document.getElementById("skill-input").value)
 */

@@ -2,6 +2,7 @@ import {Canvas, Document, Page, StyleSheet, View, Text} from '@react-pdf/rendere
 import CVHeader from "./pdf-components/pdf-header-section/CVHeader.jsx";
 import CVEducation from "./pdf-components/pdf-education-section/CVEducation.jsx";
 import CVExperience from "./pdf-components/pdf-experience-section/CVExperience.jsx";
+import CVSkills from "./pdf-components/pdf-skills-section/CVSkills.jsx"
 
 import SectionDivider from "./pdf-components/SectionDivider.jsx";
 import {useState, useContext} from "react";
@@ -26,7 +27,8 @@ const styles = StyleSheet.create({
 
 
 // Create Document Component
-const MyDocument = ({personalData,educationData, experienceData,skillData}) => {
+const MyDocument = ({personalData,educationData, experienceData,skillsData}) => {
+    console.log(skillsData)
     let {name, title, email, phoneNumber, address} = personalData;
     const [fullName, setFullName] = useState("null");
     return (
@@ -56,9 +58,16 @@ const MyDocument = ({personalData,educationData, experienceData,skillData}) => {
 
             </View>
 
-            <View><CVExperience
+            <View>
+                <CVExperience
                 experienceData={experienceData}>
-            </CVExperience></View>
+            </CVExperience>
+            </View>
+
+            <View>
+                <CVSkills skillsData={skillsData}>
+                </CVSkills>
+            </View>
 
         </Page>
     </Document>

@@ -11,7 +11,6 @@ function showDatePicker(index){
 
 
 function ExperienceEditor({keyOfElementToEdit, callback, data}){
-    console.log(data[0])
     function additem(){
         callback(false);
     }
@@ -32,7 +31,6 @@ function ExperienceEditor({keyOfElementToEdit, callback, data}){
 
 
     }
-    console.log(element)
 
     return (
         <div className={"data-modifier-box"}>

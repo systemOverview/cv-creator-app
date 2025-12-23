@@ -42,13 +42,14 @@ const App = () => {
         skillsData.forEach(
             item=>item.setterFunction = setSkillsData
         )
-    }, []);
+    }, [personalData, educationData, experienceData, skillsData]);
     let arr = [1];
 
     let CV =             <MyDocument
         personalData={personalData}
         educationData={educationData}
         experienceData={experienceData}
+        skillsData={skillsData}
     >
     </MyDocument>
     return(

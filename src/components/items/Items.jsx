@@ -1,14 +1,30 @@
 import {useState} from "react";
 import pen from "/src/assets/pen.svg"
+import redTrash from "/src/assets/red-trash.svg"
+
 import "./items.css"
 import ExperienceEditor from "../experience-info/experienceEditor.jsx";
-import {newEducationHolder} from "../../data/cv-data-examples.js"
-function ItemsGenerator({items, setEditing, setKeyOfElementToEdit}){
+import {newDataHolders} from "../../data/cv-data-examples.js"
+function ItemsGenerator({items, setterFunction, setEditing, setKeyOfElementToEdit}){
+
     function editItem(item){
         setEditing(true);
         setKeyOfElementToEdit(item.key)
 
     };
+
+    function deleteItem(item){
+        setterFunction(
+            prev=>{
+                return (
+
+                prev.filter(element=> {
+                    return element.key != item.key
+                })
+                )
+            }
+        )
+    }
 
 
     return (
@@ -22,8 +38,9 @@ function ItemsGenerator({items, setEditing, setKeyOfElementToEdit}){
                     because the key names differs
                     */}
                     <h3> {Object.values(item)[0]} </h3>
-                    <div className={"edit-icon"}>
+                    <div className={"edit-icons"}>
                         <img onClick={()=>editItem(item)} src={pen}  className={"icon"}/>
+                        <img onClick={()=>deleteItem(item)} src={redTrash}  className={"icon"}/>
                     </div>
                 </div>
                 );
@@ -32,26 +49,32 @@ function ItemsGenerator({items, setEditing, setKeyOfElementToEdit}){
     )
 }
 
-function Items({data,callback, setKeyOfElementToEdit}){
+function Items({data,callback, setKeyOfElementToEdit, EditorName}){
     let setDataFunction = data[1] // the functions responsible for updating the data state
     function addItem(){
-/*
-        callback(true)
-*/
-        setDataFunction(
-            prev => [...prev, newEducationHolder]
-        )
-        setKeyOfElementToEdit(newEducationHolder.key)
-        callback(true)
+    let newHolderType;
+    if (EditorName=="EducationEditor"){
+        newHolderType = "newEducationGenerator"
+    }
+    else if (EditorName=="ExperienceEditor"){
+        newHolderType = "newExperienceGenerator"
+    }
+    else{
+        newHolderType="newSkillsHolder";
+    }
+    let newDataHolder = newDataHolders[newHolderType]();
+    setDataFunction(
+        prev => [...prev,newDataHolder ]
+    )
+    setKeyOfElementToEdit(newDataHolder.key)
+    callback(true)
 
-/*
-        setKeyOfElementToEdit(newEducationHolder)
-*/
+
 
     }
     return (
         <div>
-            <ItemsGenerator items={data[0]} setEditing ={callback} setKeyOfElementToEdit ={setKeyOfElementToEdit}> </ItemsGenerator>
+            <ItemsGenerator items={data[0]} setterFunction ={data[1]} setEditing ={callback} setKeyOfElementToEdit ={setKeyOfElementToEdit}> </ItemsGenerator>
             <div className={`add-item`}>
                 <button onClick={(
                     ()=>{

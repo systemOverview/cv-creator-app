@@ -34,7 +34,6 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
             return educationEntry.key == keyOfElementToEdit;
         }
     )
-    console.log(element)
 
     return (
         <div className={"data-modifier-box"}>
