@@ -34,6 +34,7 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
             return educationEntry.key == keyOfElementToEdit;
         }
     )
+    console.log(element)
 
     return (
         <div className={"data-modifier-box"}>
@@ -47,7 +48,7 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
                         id={"school-name-input"}
                         placeholder={"Hochschule Darmstadt"}
                         defaultValue={element?element.schoolName:""}
-                        onChange={(e)=>{updateEducationInfo("schoolName", e.target.value, keyOfElementToEdit);}}
+                        onChange={(e)=>{element.schoolName = e.target.value}}
 
                     />
                 </div>

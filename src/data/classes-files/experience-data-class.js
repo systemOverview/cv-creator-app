@@ -85,7 +85,7 @@ export class experienceData {
     }
 
     set startDate(value) {
-        this.changeObjectInData("_startData", value)
+        this.changeObjectInData("_startDate", value)
     }
 
     set endDate(value) {
@@ -93,6 +93,12 @@ export class experienceData {
     }
 
     set achievements(value) {
+
+    }
+
+    addAchievement(){
+        let updatedAchievementsList = [...this._achievements, new Achievement("")]
+        this.changeObjectInData("_achievements", updatedAchievementsList)
 
     }
 

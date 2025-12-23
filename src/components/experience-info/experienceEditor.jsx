@@ -32,6 +32,7 @@ function ExperienceEditor({keyOfElementToEdit, callback, data}){
 
 
     }
+    console.log(element)
 
     return (
         <div className={"data-modifier-box"}>

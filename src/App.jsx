@@ -30,6 +30,7 @@ const App = () => {
     const [skillsData, setSkillsData] = useState(skillsExamples)
     useEffect(() => {
         experienceData[0].setterFunction = setExperienceData;
+        educationData[0].setterFunction = setEducationData;
     }, []);
     let arr = [1];
 
