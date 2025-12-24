@@ -2,6 +2,8 @@ import DatePicker from "../date.jsx";
 import date from "../date.jsx";
 import Achievements from "../achievements.jsx";
 import {useState} from "react";
+import {dateInputFormatter, whichDateIsBigger} from "../helper.js"
+import {dateDefaultValueFormatter} from "../helper.js"
 
 function showDatePicker(index){
     let datePicker = document.getElementsByClassName("date-picker")[index];
@@ -11,7 +13,10 @@ function showDatePicker(index){
 
 
 function ExperienceEditor({keyOfElementToEdit, callback, data}){
+    let experienceData = data[0];
+    let setExperienceData = data[1];
     let [formError, setFormError] = useState(null)
+    let [dateError, setDateError] = useState(null)
     function additem(){
         if (element.companyName==""){
             setFormError(<p className={"form-error"}> Company name must be set, add it or discard the entry if you don't need it </p>)
@@ -33,10 +38,26 @@ function ExperienceEditor({keyOfElementToEdit, callback, data}){
             return experienceEntry.key == keyOfElementToEdit;
         }
     )
+    function dateInputHandler(propretyToChange, date){
 
+        let fromDate = document.getElementById("from-date-input").value;
+        let toDate = document.getElementById("to-date-input").value;
+        if(whichDateIsBigger(fromDate, toDate)==fromDate && toDate!=""){
+            setDateError(<p className={"date-error"}> The end date must be after the start date </p>)
+            if (propretyToChange=="startDate"){
+                document.getElementById("from-date-input").value = dateDefaultValueFormatter(element.startDate);
+            }
+            else{
+                document.getElementById("to-date-input").value = dateDefaultValueFormatter(element.endDate);
+            }
 
-    let experienceData = data[0];
-    let setExperienceData = data[1];
+        }
+        else{
+            setDateError(null)
+            element[propretyToChange] = dateInputFormatter(date);
+        }
+
+    }
 
     function updatedExperienceInfo(attributeToChange, newValue, key) {
         element.companyName = newValue
@@ -90,21 +111,29 @@ function ExperienceEditor({keyOfElementToEdit, callback, data}){
             <div className={"dates-input"}>
                 <div className={"date-input from-date"}>
                     <label htmlFor={"from-date-input"}> From </label>
-                    <input id="from-date-input" placeholder={"MM/YYYY"}  onClick={()=>{showDatePicker(0)}}/>
-                    <DatePicker inputToChange={"from-date-input"}/> {/* Since the date component has ownership of it's state, I chose to pass the input id to it so it can change the input value too, instead of having to create the state in this component and passing it to the date */}
+                    <input id="from-date-input"
+                           type={"month"}
+                           placeholder={"MM/YYYY"}
+                           defaultValue={dateDefaultValueFormatter(element.startDate)}
+                           onChange={e=>{dateInputHandler("startDate", e.target.value)}}
+                    />
                 </div>
 
                 <div className={"date-input"}>
                     <label htmlFor={"to-date-input to-date"}> To </label>
-                    <input id="to-date-input" placeholder={"MM/YYYY"} onClick={()=>{showDatePicker(1)}}/>
-                    <DatePicker inputToChange={"to-date-input"}/>
+                    <input
+                        id="to-date-input"
+                        type={"month"}
+                        placeholder={"MM/YYYY"}
+                        defaultValue={dateDefaultValueFormatter(element.endDate)}
+                        onChange={e=>{dateInputHandler("endDate",e.target.value)}}
+                    />
                 </div>
             </div>
+            {dateError}
             <label> Achievements </label>
             <Achievements  data={data} keyOfElementToEdit = {keyOfElementToEdit}/>
-            <div id={"experience-form-error-holder"}>
                 {formError}
-            </div>
             <button onClick={additem} className={"done-button"}>
                 Done
             </button>

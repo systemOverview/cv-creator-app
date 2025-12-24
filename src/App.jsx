@@ -1,8 +1,5 @@
 import React, {useEffect, useState, memo, useContext, createContext} from 'react'
-
 import './styles/App.css'
-
-
 import {PDFDownloaderButton} from "./components/pdf/PDFDownloader.jsx"
 import {firstPersonalDataExample} from "./data/cv-data-examples.js";
 import {experienceExamples} from "./data/cv-data-examples.js";
@@ -11,7 +8,6 @@ import {skillsExamples} from "./data/cv-data-examples.js";
 import Editcv from "./editcv.jsx";
 import MyDocument from "./components/pdf/pdf.jsx";
 import PDFViewer from "./components/pdf/pdfPreview.jsx";
-
 
 const App = () => {
 

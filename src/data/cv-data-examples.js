@@ -47,9 +47,31 @@ let secondExperienceExample = new experienceData("Facebook", "California", "Prod
     "Streamlined company operations, reducing overhead costs by 15% through process automation.",
 ])
 
+let thirdExperienceExample = new experienceData(
+    "TechSolutions",
+    "Berlin",
+    "Senior Software Engineer",
+    "01/2021",
+    "12/2025",
+    [
+        "Led the development of a scalable cloud platform that increased user engagement by 30%.",
+        "Optimized backend processes, reducing server response time by 50%.",
+        "Introduced automated testing procedures, cutting bug rates by 40% in production.",
+        "Mentored 6 junior developers, all of whom advanced to senior roles within 18 months.",
+        "Implemented a real-time analytics feature, increasing customer satisfaction by 20%.",
+        "Collaborated with the marketing team to integrate machine learning models, boosting ad targeting efficiency by 25%.",
+        "Designed and implemented a secure API, reducing unauthorized access attempts by 90%.",
+        "Created a comprehensive documentation system that decreased onboarding time for new hires by 35%.",
+        "Negotiated vendor contracts that saved the company over $100,000 annually in software licensing.",
+        "Developed a cross-platform mobile app that gained over 1 million downloads in the first 6 months."
+    ]
+);
+
+
 export const experienceExamples = [
     firstExperienceExample,
-    secondExperienceExample
+    secondExperienceExample,
+    thirdExperienceExample
 ]
 
 // education examples

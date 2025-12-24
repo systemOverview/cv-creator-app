@@ -17,6 +17,9 @@ const styles = StyleSheet.create({
 
 
 function CVSkills({skillsData}){
+    if (skillsData==undefined || skillsData.length==0){
+        return;
+    }
     let skillsText = "";
     skillsData.map(
 

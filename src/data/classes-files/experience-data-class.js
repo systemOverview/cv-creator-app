@@ -98,7 +98,6 @@ export class experienceData {
 
     addAchievement(){
         let updatedAchievementsList = [...this._achievements, new Achievement("")]
-        console.log(updatedAchievementsList)
         this.changeObjectInData("_achievements", updatedAchievementsList)
 
     }

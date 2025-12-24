@@ -53,6 +53,12 @@ input, textarea{
     margin-top: 1em;
     text-align: center;
 }
+
+.date-error{
+    color: red;
+    text-align: center;
+}
+
 .from-date, .horizontal-multiple-input-holder div:first-child{
     margin-right: 1em;
 }
@@ -267,4 +273,8 @@ button {
         flex-direction: column;
     }
 
+}
+
+.react-pdf__Document{
+    max-width: fit-content;
 }

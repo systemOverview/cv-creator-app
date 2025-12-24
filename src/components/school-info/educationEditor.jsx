@@ -3,6 +3,10 @@ import date from "../date.jsx";
 import Achievements from "../achievements.jsx";
 import {useState} from "react";
 import "./educationEditor.css"
+import {whichDateIsBigger} from "../helper.js"
+import {dateInputFormatter} from "../helper.js"
+import {dateDefaultValueFormatter} from "../helper.js"
+
 function showDatePicker(index){
     let datePicker = document.getElementsByClassName("date-picker")[index];
     datePicker.classList.remove("hidden")
@@ -14,11 +18,13 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
     let educationData = data[0];
     let setEducationData = data[1];
     let [formError, setFormError] = useState(null)
+    let [dateError, setDateError] = useState(null)
     function additem(){
-        if (element.companyName==""){
+        if (element.schoolName==""){
             setFormError(<p className={"form-error"}> School name must be set, add it or discard the entry if you don't need it </p>)
         }
         else {
+            console.log(element.schoolName)
             setFormError(null)
             element.removeEmptyAchievements();
             callback(false);
@@ -29,15 +35,33 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
         callback(false)
     }
 
-    function additem(){
-        callback(false);
-    }
 
     let element = data[0].find(
         educationEntry =>{
             return educationEntry.key == keyOfElementToEdit;
         }
     )
+
+    function dateInputHandler(propretyToChange, date){
+
+        let fromDate = document.getElementById("from-date-input").value;
+        let toDate = document.getElementById("to-date-input").value;
+        if(whichDateIsBigger(fromDate, toDate)==fromDate && toDate!=""){
+            setDateError(<p className={"date-error"}> The end date must be after the start date </p>)
+            if (propretyToChange=="startDate"){
+                document.getElementById("from-date-input").value = dateDefaultValueFormatter(element.startDate);
+            }
+            else{
+                document.getElementById("to-date-input").value = dateDefaultValueFormatter(element.endDate);
+            }
+
+        }
+        else{
+            setDateError(null)
+            element[propretyToChange] = dateInputFormatter(date);
+        }
+
+    }
 
     return (
         <div className={"data-modifier-box"}>
@@ -73,16 +97,27 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
             <div className={"dates-input"}>
                 <div className={"date-input from-date"}>
                     <label htmlFor={"from-date-input"}> From </label>
-                    <input id="from-date-input" placeholder={"MM/YYYY"}  onClick={()=>{showDatePicker(0)}}/>
-                    <DatePicker inputToChange={"from-date-input"}/> {/* Since the date component has ownership of it's state, I chose to pass the input id to it so it can change the input value too, instead of having to create the state in this component and passing it to the date */}
+                    <input id="from-date-input"
+                           type={"month"}
+                           placeholder={"MM/YYYY"}
+                           defaultValue={dateDefaultValueFormatter(element.startDate)}
+                           onChange={e=>{dateInputHandler("startDate", e.target.value)}}
+                    />
                 </div>
 
                 <div className={"date-input"}>
                     <label htmlFor={"to-date-input to-date"}> To </label>
-                    <input id="to-date-input" placeholder={"MM/YYYY"} onClick={()=>{showDatePicker(1)}}/>
-                    <DatePicker inputToChange={"to-date-input"}/>
+                    <input
+                        id="to-date-input"
+                        type={"month"}
+                        placeholder={"MM/YYYY"}
+                        defaultValue={dateDefaultValueFormatter(element.endDate)}
+                        onChange={e=>{dateInputHandler("endDate",e.target.value)}}
+                    />
                 </div>
             </div>
+
+            {dateError}
 
             <div className={"university-descritpion"}>
                 <label> Description (text area )</label>
@@ -91,10 +126,7 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
 
             <label> Achievements </label>
             <Achievements data={data} keyOfElementToEdit = {keyOfElementToEdit} />
-
-            <div id={"education-form-error-holder"}>
                 {formError}
-            </div>
             <button onClick={additem} className={"done-button"}>
                 Done
             </button>

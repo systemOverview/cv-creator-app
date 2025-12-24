@@ -73,7 +73,6 @@ export class educationData {
     }
 
     set schoolDegree(value) {
-        console.log("called")
         this.changeObjectInData("_schoolDegree", value)
     }
 
@@ -117,7 +116,7 @@ export class educationData {
         this.changeObjectInData("_achievements", updatedAchievementsList)
 
     }
-    
+
     removeSelf(){
         this.setterFunction(
             prev=>{
