@@ -41,14 +41,18 @@
 /* contact-info */
 
 .contact-info{
+    min-width: 100%;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .contact-info >div{
     display: flex;
     flex-direction: column;
+    /*
     justify-content: stretch;
-    width: 100%;
+    */
+    width: max-content;
     margin-right: 1em;
 }
 

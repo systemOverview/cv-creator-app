@@ -1,98 +1,92 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { pdfjs, Document, Page, Outline } from 'react-pdf'
-import {pdf, usePDF} from '@react-pdf/renderer'
+import {pdf, usePDF, PDFViewer} from '@react-pdf/renderer'
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import {generateRandomId} from "../../components/helper.js";
 
 import { WorkerMessageHandler } from "pdfjs-dist/build/pdf.worker.min.mjs";
 
-// The code for this PDF Previewer was copied from https://github.com/diegomura/react-pdf/issues/477#issuecomment-886161514
+
+// The code for this PDF Previewer was copied from https://codesandbox.io/p/sandbox/react-pdf-prevent-flash-se4r7s
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     WorkerMessageHandler,
     import.meta.url
 ).toString();
 
-const PDFViewer = ({ children }) => {
+const CustomPDFViewer = ({ children }) => {
     const [pdfUrl, setPdfUrl] = useState(null);
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
+    const [renderedPageNumber, setRenderedPageNumber] = useState(null);
 
-    const onDocumentLoadSuccess = useCallback((document) => {
-        const { numPages: nextNumPages } = document;
-        setNumPages(nextNumPages);
+    function onDocumentLoadSuccess({ numPages }) {
+        setNumPages(numPages);
+    }
 
-    }, []);
+    function changePage(offset) {
+        setPageNumber((prevPageNumber) => prevPageNumber + offset);
+    }
 
+    function previousPage() {
+        changePage(-1);
+    }
 
-
-
-    const onItemClick = useCallback(
-        ({ pageNumber: nextPageNumber }) => setPageNumber(nextPageNumber),
-        [],
-    );
-
-    const changePage = useCallback(
-        (offset) => setPageNumber((prevPageNumber) => (prevPageNumber || 1) + offset),
-        [],
-    );
-
-    const previousPage = useCallback(() => changePage(-1), [changePage]);
-
-    const nextPage = useCallback(() => changePage(1), [changePage]);
-
-
+    function nextPage() {
+        changePage(1);
+    }
     useEffect(() => {
         const child = React.Children.only(children);
-
         pdf(child).toBlob().then(blob => {
             setPdfUrl(URL.createObjectURL(blob));
 
         })
 
 
+
     }, [children]);
 
+    const isLoading = renderedPageNumber !== pageNumber;
     if (numPages!=null){
         if (pageNumber>numPages){
             setPageNumber(numPages)
         }
     }
-
     return (
-        <Document
-            file={pdfUrl}
-            onLoadSuccess={onDocumentLoadSuccess}
-            onItemClick={onItemClick}
-            key={generateRandomId()}
-        >
-            <Outline
-                className="custom-classname-outline"
-                onItemClick={onItemClick}
-            />
-            <Page renderMode='svg' pageNumber={pageNumber} />
-            <div className="Test__container__content__controls">
-                <button
-                    disabled={pageNumber <= 1}
-                    onClick={previousPage}
-                    type="button"
-                >
+        <div className="pdf-viewer">
+            <div className={"pagination"}>
+                <button type="button" disabled={pageNumber <= 1} onClick={previousPage}>
                     Previous
                 </button>
-                <span className={"page-number"} style={{color: "#2572b5"}}>
-          {`Page ${pageNumber || (numPages ? 1 : '--')} of ${numPages || '--'}`}
-        </span>
+
+                <p>
+                    Page {pageNumber || (numPages ? 1 : "--")} of {numPages || "--"}
+                </p>
+
                 <button
+                    type="button"
                     disabled={pageNumber >= numPages}
                     onClick={nextPage}
-                    type="button"
                 >
                     Next
                 </button>
             </div>
-        </Document>
+            <Document file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess}>
+                {isLoading && renderedPageNumber ? (
+                    <Page
+                        key={renderedPageNumber}
+                        className="prevPage"
+                        pageNumber={renderedPageNumber}/>
+                ) : null}
+                <Page
+                    key={pageNumber}
+                    pageNumber={pageNumber}
+                    onRenderSuccess={() => setRenderedPageNumber(pageNumber)}
+                />
+            </Document>
+        </div>
     );
 }
 
-export default PDFViewer;
+export default CustomPDFViewer;

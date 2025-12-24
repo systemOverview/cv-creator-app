@@ -80,7 +80,9 @@
 
 
 .edit-cv-section > * {
+    /*
     box-sizing: border-box;
+    */
     margin-bottom: 1em;
 }
 

@@ -7,7 +7,7 @@ import {educationExamples} from "./data/cv-data-examples.js";
 import {skillsExamples} from "./data/cv-data-examples.js";
 import Editcv from "./editcv.jsx";
 import MyDocument from "./components/pdf/pdf.jsx";
-import PDFViewer from "./components/pdf/pdfPreview.jsx";
+import CustomPDFViewer from "./components/pdf/pdfPreview.jsx";
 
 const App = () => {
 
@@ -41,6 +41,7 @@ const App = () => {
         skillsData={skillsData}
     >
     </MyDocument>
+
     return(
     <div className={"container"}>
 
@@ -57,10 +58,11 @@ const App = () => {
 
         </PDFDownloaderButton>
     </div>
-
-        <PDFViewer>
+    <div className={"pdf-viewer"}>
+        <CustomPDFViewer>
             {CV}
-        </PDFViewer>
+        </CustomPDFViewer>
+    </div>
 
 
 

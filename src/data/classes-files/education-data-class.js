@@ -128,10 +128,19 @@ export class educationData {
     }
 
     removeEmptyAchievements(){
+        let emptyFoundAchievements = 0;
         let updatedAchievementsList = this._achievements.filter(
-            (achievement)=>{ return achievement.achievementText!=""}
+            (achievement)=>{
+                if (achievement.achievementText==""){
+                    emptyFoundAchievements++;
+                    return false;
+                }
+                return true;
+            }
         )
-        this.changeObjectInData("_achievements", updatedAchievementsList)
+        if (emptyFoundAchievements>0) {
+            this.changeObjectInData("_achievements", updatedAchievementsList)
+        }
     }
 
 }
