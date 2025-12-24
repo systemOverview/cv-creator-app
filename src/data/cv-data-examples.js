@@ -1,9 +1,9 @@
-import {personalData} from "./cv-data-classes.js";
 import dataClasses from "./cv-data-classes.js";
 import {getRandomInt} from "../components/helper.js";
 let experienceData = dataClasses.experienceData;
 let educationData = dataClasses.educationData;
 let skillsData = dataClasses.skillsData;
+let personalData= dataClasses.personalData;
 export const achievementsList = [
     "Increased sales by 25% within the first year by implementing a new customer acquisition strategy.",
     "Led a team of 5 to complete a project 2 weeks ahead of schedule, exceeding client expectations.",

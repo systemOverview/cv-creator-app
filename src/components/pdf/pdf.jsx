@@ -28,19 +28,24 @@ const styles = StyleSheet.create({
 
 // Create Document Component
 const MyDocument = ({personalData,educationData, experienceData,skillsData}) => {
-    console.log(skillsData)
-    let {name, title, email, phoneNumber, address} = personalData;
+/*
+    let { name, title, email, phoneNumber, address} = personalData;
+    console.log(personalData)
     const [fullName, setFullName] = useState("null");
+*/
     return (
     <Document>
         <Page size="A4" style={styles.page}>
             <View>
                 <CVHeader
-                    name={() => (`${name}`)}
+                    personalData = {personalData}
+/*
+                    name={personalData}
                     title={() => (`${title}`)}
                     email={() => (`${email}`)}
                     phoneNumber={() => (`${phoneNumber}`)}
                     address={() => (`${address}`)}
+*/
 
                 />
 

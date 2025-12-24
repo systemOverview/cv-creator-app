@@ -31,17 +31,17 @@ export const ContactInfo = (contactInfo) => {
     <View style = {styles.contactSection}>
             <View style = {styles.contactSectionItem}>
                 <Image style = {styles.icon} src={phoneIcon}> </Image>
-                <Text  render={phoneNumber}></Text>
+                <Text> {phoneNumber}</Text>
             </View>
 
             <View style = {styles.contactSectionItem}>
                 <Image style = {styles.icon} src={emailIcon}> </Image>
-                <Text render={email}></Text>
+                <Text >{email}</Text>
             </View>
 
             <View style = {styles.contactSectionItem}>
                 <Image style = {styles.icon} src={addressIcon}> </Image>
-                <Text render={address}></Text>
+                <Text >{address}</Text>
             </View>
 
         </View>

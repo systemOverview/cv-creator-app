@@ -1,26 +1,14 @@
 import {experienceData} from "./classes-files/experience-data-class.js"
 import {educationData} from "./classes-files/education-data-class.js"
 import {skillsData} from "./classes-files/skills-data-class.js"
-
+import {personalData} from "./classes-files/personal-data-class.js"
 let dataClasses = {
+    personalData : personalData,
     experienceData : experienceData,
     educationData: educationData,
-    skillsData : skillsData
+    skillsData : skillsData,
 }
 
-export class personalData {
-    constructor(name, title, photo, email, phoneNumber, address) {
-
-        this.name = name;
-        this.title = title;
-        this.photo = photo;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-    }
-
-
-}
 
 
 

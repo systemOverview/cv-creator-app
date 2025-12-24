@@ -17,19 +17,18 @@ import personalIcon from "./assets/personal.svg";
 import CvSectionComponent from "./components/cvSection.jsx";
 import {getRandomInt} from "./components/helper.js"
 import jobIcon from "./assets/job.svg";
-
+import {ExperienceDataHolder} from "./data/experience-data-holder-class.js"
 
 
 const App = () => {
-
 
     const [name, setName] = useState("nsull");
     const [personalData, setPersonalData] = useState(firstPersonalDataExample)
     const [educationData,setEducationData] = useState(educationExamples)
     const [experienceData, setExperienceData] = useState(experienceExamples)
     const [skillsData, setSkillsData] = useState(skillsExamples)
-    console.log(skillsData)
     useEffect(() => {
+        let ExperienceDataHolder
         // Link the state setting function for all objects
         educationData.forEach(
             item=>item.setterFunction = setEducationData
@@ -42,7 +41,9 @@ const App = () => {
         skillsData.forEach(
             item=>item.setterFunction = setSkillsData
         )
-    }, [personalData, educationData, experienceData, skillsData]);
+
+        personalData.setterFunction = setPersonalData;
+    }, [educationData, experienceData, skillsData]);
     let arr = [1];
 
     let CV =             <MyDocument
@@ -57,7 +58,7 @@ const App = () => {
 
     <div className={"left-container"}>
         <Editcv
-            PersonalData = {[personalData, setPersonalData]}
+            personalData = {[personalData, setPersonalData]}
             educationData = {[educationData,setEducationData]}
             experienceData = {[experienceData,setExperienceData]}
             skillsData = {[skillsData,setSkillsData]}

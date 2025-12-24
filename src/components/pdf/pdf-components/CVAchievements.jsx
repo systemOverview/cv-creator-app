@@ -27,15 +27,17 @@ function Achievements({achievementsList}){
     return (
         achievementsList.map(
         (achievement)=>{
-            return (
-                <View style = {styles.achievement} >
+            if (achievement.achievementText.length>0) {
+                return (
+                    <View style={styles.achievement}>
 
 
-                <Text style = {styles.bulletPoint} >•</Text>
+                        <Text style={styles.bulletPoint}>•</Text>
 
 
-                <Text>{achievement.achievementText}</Text>
-            </View>)
+                        <Text>{achievement.achievementText}</Text>
+                    </View>)
+            }
         }
     )
     )

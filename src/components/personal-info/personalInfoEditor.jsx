@@ -3,11 +3,9 @@ import "./personalInfo.css"
 import avatar from "../../assets/avatar.png"
 import {titleExamples} from "../../data/cv-data-examples.js";
 import {getRandomInt} from "../helper.js";
-function PersonalInfoEditor(props){
+function PersonalInfoEditor({data, collapseFunction}){
 
-    let dataInfo = props.PersonalData[0];
-    let setPersonalData = props.PersonalData[1];
-    const [title, setTitle] = useState(""); // Initialize title with an empty string
+    const [title, setTitle] = useState("");
     useEffect(() => {
         setTitle(titleExamples[getRandomInt(0,titleExamples.length)]);
     },[]);
@@ -26,7 +24,7 @@ function PersonalInfoEditor(props){
 
 
   }
-
+    console.log(data)
     function updatePersonalInfo(attributeToChange, newValue) {
         setPersonalData(prevData => ({
             ...prevData,
@@ -34,7 +32,6 @@ function PersonalInfoEditor(props){
         }));
 
     }
-
     return (
         <div className={"personal-data-modifier-box"}>
 
@@ -53,8 +50,8 @@ function PersonalInfoEditor(props){
                 <div className={"personal-input horizontal-element-input"}>
                     <label htmlFor="personal-name-input"> Full name </label>
                     <input id="personal-name-input" className={"text-input"} placeholder={"John Doe"}
-                           defaultValue={props.element ? props.element.companyName : ""}
-                           onChange={(e)=>{updatePersonalInfo("name", e.target.value);}}
+                           defaultValue={data ? data.name : ""}
+                           onChange={(e)=>{data.name = e.target.value}}
                            />
                 </div>
 
@@ -65,8 +62,8 @@ function PersonalInfoEditor(props){
                            placeholder={titleExamples[getRandomInt(0,titleExamples.length)]}
 */
                         placeholder={title}
-                           defaultValue={props.element ? props.element.companyLocation : ""}
-                           onChange={(e)=>{updatePersonalInfo("title", e.target.value);}}
+                           defaultValue={data ? data.title : ""}
+                           onChange={(e)=>{data.title = e.target.value}}
                     />
                 </div>
 
@@ -77,7 +74,8 @@ function PersonalInfoEditor(props){
                         <input
                                id={"phone-number-input"}
                                placeholder={"0123456789"}
-                               onChange={(e)=>{updatePersonalInfo("phoneNumber", e.target.value);}}
+                               defaultValue={data ? data.phoneNumber : ""}
+                               onChange={(e)=>{data.phoneNumber = e.target.value}}
                         />
                     </div>
 
@@ -86,7 +84,8 @@ function PersonalInfoEditor(props){
                         <input
                                id={"email-input"}
                                placeholder={"John.doe@gmail.com"}
-                               onChange={(e)=>{updatePersonalInfo("email", e.target.value);}}
+                               defaultValue={data ? data.email : ""}
+                               onChange={(e)=>{data.email = e.target.value}}
                         />
                     </div>
 
@@ -95,7 +94,8 @@ function PersonalInfoEditor(props){
                         <input
                             id={"address-input"}
                             placeholder={"Marktplatz 15"}
-                            onChange={(e)=>{updatePersonalInfo("address", e.target.value);}}
+                            defaultValue={data ? data.address : ""}
+                            onChange={(e)=>{data.address = e.target.value}}
                         />
 
                     </div>
@@ -103,7 +103,7 @@ function PersonalInfoEditor(props){
                 </div>
             </div>
 
-            <button onClick={()=>{props.collapseFunction(false)}} className={"done-button"}>
+            <button onClick={()=>{collapseFunction(false)}} className={"done-button"}>
                 Done
             </button>
 
