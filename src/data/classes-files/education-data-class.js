@@ -73,7 +73,8 @@ export class educationData {
     }
 
     set schoolDegree(value) {
-        this.changeObjectInData("_schoolDegre", value)
+        console.log("called")
+        this.changeObjectInData("_schoolDegree", value)
     }
 
 
@@ -116,10 +117,22 @@ export class educationData {
         this.changeObjectInData("_achievements", updatedAchievementsList)
 
     }
+    
+    removeSelf(){
+        this.setterFunction(
+            prev=>{
+                return(
+                    prev.filter(entry=>entry.key!=this.key)
+                )
+            }
+        )
+    }
 
-
-
-
-
+    removeEmptyAchievements(){
+        let updatedAchievementsList = this._achievements.filter(
+            (achievement)=>{ return achievement.achievementText!=""}
+        )
+        this.changeObjectInData("_achievements", updatedAchievementsList)
+    }
 
 }

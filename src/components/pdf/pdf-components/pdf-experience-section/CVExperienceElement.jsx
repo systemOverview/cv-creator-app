@@ -34,12 +34,14 @@ function CVExperienceElement({element, index}){
     return(
         <View style = {{marginTop: marginTop}}>
             <View style = {styles.elementHeader}>
-                <Text> {element.companyName} </Text>
-                <Text style={styles.date}> {element.startDate} - {element.endDate} </Text>
+                {element.companyName?<Text> {element.companyName} </Text>:null}
+                {element.startDate || element.endDate?<Text style={styles.date}> {element.startDate} - {element.endDate} </Text>:null}
             </View>
 
-            <Text style = {styles.title}> {element.title} </Text>
-            <Achievements achievementsList = {element.achievements}/>
+            {element.title?<Text style={styles.title}> {element.title} </Text>:null}
+
+
+            <Achievements achievementsList={element.achievements}/>
         </View>
     )
 }

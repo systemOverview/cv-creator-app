@@ -48,7 +48,11 @@ input, textarea{
     letter-spacing: 3px;
 }
 
-
+.form-error{
+    color: red;
+    margin-top: 1em;
+    text-align: center;
+}
 .from-date, .horizontal-multiple-input-holder div:first-child{
     margin-right: 1em;
 }

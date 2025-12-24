@@ -11,8 +11,20 @@ function showDatePicker(index){
 
 
 function ExperienceEditor({keyOfElementToEdit, callback, data}){
+    let [formError, setFormError] = useState(null)
     function additem(){
-        callback(false);
+        if (element.companyName==""){
+            setFormError(<p className={"form-error"}> Company name must be set, add it or discard the entry if you don't need it </p>)
+        }
+        else {
+            setFormError(null)
+            element.removeEmptyAchievements();
+            callback(false);
+        }
+    }
+    function discarditem(){
+        element.removeSelf();
+        callback(false)
     }
     let element;
 
@@ -33,7 +45,7 @@ function ExperienceEditor({keyOfElementToEdit, callback, data}){
     }
 
     return (
-        <div className={"data-modifier-box"}>
+        <div className={"data-modifier-box"} id={"experience-data-modifier-box"}>
 {/*
 
             <h3 className={"data-modifier-title"}> Experience</h3>
@@ -90,44 +102,17 @@ function ExperienceEditor({keyOfElementToEdit, callback, data}){
             </div>
             <label> Achievements </label>
             <Achievements  data={data} keyOfElementToEdit = {keyOfElementToEdit}/>
-
+            <div id={"experience-form-error-holder"}>
+                {formError}
+            </div>
             <button onClick={additem} className={"done-button"}>
                 Done
             </button>
-{/*
-            <div className={"achievements-input"}>
-                <div className={"achievement"}>
-                    <label htmlFor={"achievementInput"}> • </label>
-                    <input id="achievementInput"
-                           placeholder={"Created automated scripts using Python to streamline data collection and reporting, reducing manual effort by 40%. "}/>
-                </div>
 
-                <div className={"achievement"}>
-                    <label htmlFor={"achievementInput"}> • </label>
-                    <input id="achievementInput"
-                           placeholder={"Created automated scripts using Python to streamline data collection and reporting, reducing manual effort by 40%. "}/>
-                </div>
+            <button onClick={discarditem} className={"discard-button"}>
+                Discard
+            </button>
 
-                <div className={"achievement"}>
-                    <label htmlFor={"achievementInput"}> • </label>
-                    <input id="achievementInput"
-                           placeholder={"Created automated scripts using Python to streamline data collection and reporting, reducing manual effort by 40%. "}/>
-                </div>
-
-            </div>
-*/}
-
-
-            {/*
-            <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aut, culpa debitis dolore dolorem doloremque ipsa itaque labore modi officia optio possimus quasi sint sit soluta unde velit veniam voluptatem? </p>
-*/}
-
-            {/*
-                <label htmlFor={"date-form"}> From </label>
-*/}
-{/*
-                <input type={"date"}/>
-*/}
         </div>
     )
 }

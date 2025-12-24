@@ -14,16 +14,7 @@ function ItemsGenerator({items, setterFunction, setEditing, setKeyOfElementToEdi
     };
 
     function deleteItem(item){
-        setterFunction(
-            prev=>{
-                return (
-
-                prev.filter(element=> {
-                    return element.key != item.key
-                })
-                )
-            }
-        )
+        item.removeSelf()
     }
 
 

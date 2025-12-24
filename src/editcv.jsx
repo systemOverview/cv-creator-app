@@ -15,7 +15,6 @@ import educationIcon from "./assets/education.svg"
 import skillsIcon from "./assets/skills.svg"
 function EditCvSection({personalData, educationData, experienceData, skillsData, setName}) {
 
-    console.log(personalData[0])
     const [isEditingExperience, setEditingExperience] = useState(false);
     const [experienceList, setExperienceList] = useState(experienceExamples)
     const [skillsList, setSkillsList] = useState(skillsExamples)

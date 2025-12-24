@@ -24,10 +24,9 @@ function CVEducationElements ({elements}){
 }
 
 function CVEducation({educationData}){
-    educationData.forEach(
-        (element)=>{
-        }
-    )
+    if (educationData==undefined || educationData.length==0){
+        return;
+    }
     return <section>
         <Text style = {styles.title}> EDUCATION </Text>
         <SectionDivider/>

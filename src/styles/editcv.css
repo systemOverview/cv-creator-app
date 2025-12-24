@@ -86,25 +86,40 @@
 
 /* experience editor */
 
-.done-button, .add-item-button{
-    background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%);
+.done-button, .add-item-button, .discard-button{
     margin: 1em auto 1em auto;
     padding: 15px 45px;
     text-align: center;
     text-transform: uppercase;
     transition: 0.5s;
     background-size: 200% auto;
-    color: white; box-shadow: 0 0 20px #eee;
     border-radius: 10px;
     display: block;
     width: 30%;
-
 }
+
+.done-button, .add-item-button{
+    color: white; box-shadow: 0 0 20px #eee;
+    background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%);
+}
+
 
 .done-button:hover{
     background-position: right center;
     color: #fff;
     text-decoration: none;
+}
+
+.discard-button{
+    border: 0.5px solid black;
+    box-shadow: 2px 3px 0 0 gray;
+    transition: 0.5s;
+}
+
+.discard-button:hover{
+    background-color: red;
+    color: white;
+    background-position: right center;
 }
 
 /* FORM TODO most of the form css is in app.css, must be refactored /*

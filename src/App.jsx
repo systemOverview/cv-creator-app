@@ -11,13 +11,6 @@ import {skillsExamples} from "./data/cv-data-examples.js";
 import Editcv from "./editcv.jsx";
 import MyDocument from "./components/pdf/pdf.jsx";
 import PDFViewer from "./components/pdf/pdfPreview.jsx";
-import {generateRandomExample} from "./components/helper.js"
-import PersonalInfoSection from "./components/personal-info/personalInfoSection.jsx";
-import personalIcon from "./assets/personal.svg";
-import CvSectionComponent from "./components/cvSection.jsx";
-import {getRandomInt} from "./components/helper.js"
-import jobIcon from "./assets/job.svg";
-import {ExperienceDataHolder} from "./data/experience-data-holder-class.js"
 
 
 const App = () => {
@@ -28,7 +21,6 @@ const App = () => {
     const [experienceData, setExperienceData] = useState(experienceExamples)
     const [skillsData, setSkillsData] = useState(skillsExamples)
     useEffect(() => {
-        let ExperienceDataHolder
         // Link the state setting function for all objects
         educationData.forEach(
             item=>item.setterFunction = setEducationData

@@ -30,11 +30,7 @@ function Achievements({achievementsList}){
             if (achievement.achievementText.length>0) {
                 return (
                     <View style={styles.achievement}>
-
-
                         <Text style={styles.bulletPoint}>•</Text>
-
-
                         <Text>{achievement.achievementText}</Text>
                     </View>)
             }

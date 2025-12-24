@@ -34,11 +34,13 @@ function CVEducationElement({element, index}){
     return(
         <View style = {{marginTop: marginTop}}>
             <View style = {styles.elementHeader}>
-                <Text> {element.schoolName} </Text>
-                <Text style={styles.date}> {element.startDate} - {element.endDate} </Text>
+
+                {element.schoolName?<Text> {element.schoolName} </Text>:null}
+                {element.startDate || element.endDate?<Text style={styles.date}> {element.startDate} - {element.endDate} </Text>:null}
+
             </View>
 
-            <Text style = {styles.degreeName}> {element.degreeName} </Text>
+            {element.degreeName?<Text style={styles.degreeName}> {element.degreeName} </Text>:null}
             <Achievements achievementsList = {element.achievements}/>
         </View>
     )

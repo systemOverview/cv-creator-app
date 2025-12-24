@@ -26,7 +26,9 @@ function CVExperienceELements ({elements}){
 }
 
 function CVExperience({experienceData}){
-
+    if (experienceData==undefined || experienceData.length==0){
+        return;
+    }
     return <section>
         <Text style = {styles.title}> EXPERIENCE </Text>
         <SectionDivider/>

@@ -13,16 +13,20 @@ function showDatePicker(index){
 function EducationEditor({keyOfElementToEdit, callback, data}){
     let educationData = data[0];
     let setEducationData = data[1];
-
-    function updateEducationInfo(attributeToChange, newValue, key) {
-        let updatedData = educationData.map(
-            (educationEntry)=>{
-                return (educationEntry.key == key? {...educationEntry, [attributeToChange]:newValue} : educationEntry);
-            }
-        )
-
-    setEducationData(updatedData);
-
+    let [formError, setFormError] = useState(null)
+    function additem(){
+        if (element.companyName==""){
+            setFormError(<p className={"form-error"}> School name must be set, add it or discard the entry if you don't need it </p>)
+        }
+        else {
+            setFormError(null)
+            element.removeEmptyAchievements();
+            callback(false);
+        }
+    }
+    function discarditem(){
+        element.removeSelf();
+        callback(false)
     }
 
     function additem(){
@@ -58,7 +62,7 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
                         id={"school-degree-input"}
                         placeholder={"Computer science"}
                         defaultValue={element?element.degreeName:""}
-                        onChange={(e)=>{updateEducationInfo("degreeName", e.target.value, keyOfElementToEdit);}}
+                        onChange={(e)=>{element.schoolDegree = e.target.value}}
 
                     />
                 </div>
@@ -88,8 +92,15 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
             <label> Achievements </label>
             <Achievements data={data} keyOfElementToEdit = {keyOfElementToEdit} />
 
-            <button onClick={additem} className={"done-button"} >
+            <div id={"education-form-error-holder"}>
+                {formError}
+            </div>
+            <button onClick={additem} className={"done-button"}>
                 Done
+            </button>
+
+            <button onClick={discarditem} className={"discard-button"}>
+                Discard
             </button>
 
         </div>

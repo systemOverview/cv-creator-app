@@ -69,7 +69,6 @@ export class personalData {
     changePersonalData(attributeToChange, newValue){
         let newPersonalData = Object.assign(Object.create(Object.getPrototypeOf(this)), this);
         newPersonalData[attributeToChange] = newValue;
-        console.log(newPersonalData)
         this.setterFunction(newPersonalData)
     }
 }

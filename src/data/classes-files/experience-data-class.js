@@ -98,6 +98,7 @@ export class experienceData {
 
     addAchievement(){
         let updatedAchievementsList = [...this._achievements, new Achievement("")]
+        console.log(updatedAchievementsList)
         this.changeObjectInData("_achievements", updatedAchievementsList)
 
     }
@@ -122,7 +123,24 @@ export class experienceData {
         this.changeObjectInData("_achievements", updatedAchievementsList)
 
     }
-
+    //deletes/discards the whole object from the form/pdf
+    removeSelf(){
+        this.setterFunction(
+            prev=>{
+                return(
+                    prev.filter(entry=>entry.key!=this.key)
+                )
+            }
+        )
+    }
+    // if the user creates new achievements inputs and doesn't fill them, this function handles
+    // removing the empty ones when they click done to finish editing
+    removeEmptyAchievements(){
+        let updatedAchievementsList = this._achievements.filter(
+            (achievement)=>{ return achievement.achievementText!=""}
+        )
+        this.changeObjectInData("_achievements", updatedAchievementsList)
+    }
 
     set setterFunction(value) {
         this._setterFunction = value;

@@ -32,7 +32,7 @@ const CreateAchievements = memo(function CreateAchievements(props){
 
 
 
-    }, [achievements]);
+    }, []);
 
     function deleteAchievement (keyOfAchievementToDelete) {
 

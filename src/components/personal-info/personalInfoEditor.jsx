@@ -24,7 +24,6 @@ function PersonalInfoEditor({data, collapseFunction}){
 
 
   }
-    console.log(data)
     function updatePersonalInfo(attributeToChange, newValue) {
         setPersonalData(prevData => ({
             ...prevData,
