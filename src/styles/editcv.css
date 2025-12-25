@@ -72,8 +72,11 @@
 
 
 .items-open{
-    max-height: 500px;
+    max-height: 1000px;
     transition: max-height 1s ease-in;
+    overflow: hidden;
+    max-width: 100%;
+
 }
 
 /* */
@@ -89,6 +92,7 @@
 /* experience editor */
 
 .done-button, .add-item-button, .discard-button{
+
     margin: 1em auto 1em auto;
     padding: 15px 45px;
     text-align: center;
@@ -97,7 +101,7 @@
     background-size: 200% auto;
     border-radius: 10px;
     display: block;
-    width: 30%;
+    width: fit-content;
 }
 
 .done-button, .add-item-button{

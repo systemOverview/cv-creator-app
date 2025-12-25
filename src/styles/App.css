@@ -15,9 +15,9 @@ input, textarea{
 }
 
 /* experience editor*/
-
-
-
+body, html,* {
+    max-width: 100vw;
+}
 
 /* Edit cv section */
 .edit-cv {
@@ -211,14 +211,7 @@ label{
     align-items: center;
 }
 
-.pagination p{
 
-}
-.pagination>*{
-    /*
-    background-color: red;
-    */
-}
 /* container */
 
 .container {
@@ -230,11 +223,8 @@ label{
 }
 
 
-
 .left-container{
-    margin: 0 2em;
-    min-width: 60%;
-    max-width: 60%;
+    margin-right: 2em;
 }
 
 /*Download Button*/
@@ -274,8 +264,40 @@ button {
     .container{
         margin-left: 0;
     }
-
-
-
 }
 
+@media only screen and (max-width: 1400px) {
+
+
+    .container{
+        width: 100%;
+    }
+}
+
+
+@media only screen and (max-width: 1000px) {
+
+    .left-container{
+        min-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .container{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        font-size: 1.5em;
+    }
+    .cv-section{
+        margin-left:0.5em !important;
+    }
+
+    .school-input{
+        flex-wrap: wrap;
+    }
+
+    .data-modifier-box{
+        margin: 0 0.5em
+    }
+}

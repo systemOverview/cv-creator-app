@@ -16,6 +16,10 @@ const App = () => {
     const [educationData,setEducationData] = useState(educationExamples)
     const [experienceData, setExperienceData] = useState(experienceExamples)
     const [skillsData, setSkillsData] = useState(skillsExamples)
+    const [width, setWidth] = useState(null);
+
+
+
     useEffect(() => {
         // Link the state setting function for all objects
         educationData.forEach(
@@ -54,12 +58,12 @@ const App = () => {
             >
         </Editcv>
 
-        <PDFDownloaderButton name = {personalData.name} doc = {CV}>
+        <PDFDownloaderButton  name = {personalData.name} doc = {CV}>
 
         </PDFDownloaderButton>
     </div>
-    <div className={"pdf-viewer"}>
-        <CustomPDFViewer>
+    <div  className={"pdf-viewer"}>
+        <CustomPDFViewer width={width}>
             {CV}
         </CustomPDFViewer>
     </div>

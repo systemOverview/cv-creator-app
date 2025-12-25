@@ -3,10 +3,9 @@ import { pdfjs, Document, Page, Outline } from 'react-pdf'
 import {pdf, usePDF, PDFViewer} from '@react-pdf/renderer'
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
-import {generateRandomId} from "../../components/helper.js";
-
+import { SizeMe } from 'react-sizeme'
 import { WorkerMessageHandler } from "pdfjs-dist/build/pdf.worker.min.mjs";
-
+import { useViewportSize } from '@mantine/hooks';
 
 // The code for this PDF Previewer was copied from https://codesandbox.io/p/sandbox/react-pdf-prevent-flash-se4r7s
 
@@ -16,10 +15,12 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 const CustomPDFViewer = ({ children }) => {
+    const { height, width } = useViewportSize();
     const [pdfUrl, setPdfUrl] = useState(null);
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
     const [renderedPageNumber, setRenderedPageNumber] = useState(null);
+
 
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
@@ -43,9 +44,9 @@ const CustomPDFViewer = ({ children }) => {
 
         })
 
-
-
     }, [children]);
+
+
 
     const isLoading = renderedPageNumber !== pageNumber;
     if (numPages!=null){
@@ -53,8 +54,32 @@ const CustomPDFViewer = ({ children }) => {
             setPageNumber(numPages)
         }
     }
+    let pageWidth;
+    if (width<1000){
+        pageWidth=width;
+    }
+    else{
+        pageWidth=null;
+    }
+    console.log(width)
     return (
-        <div className="pdf-viewer">
+        <div>
+
+            <Document file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess}>
+                {isLoading && renderedPageNumber ? (
+                    <Page
+                        key={renderedPageNumber}
+                        className="prevPage"
+                        pageNumber={renderedPageNumber}/>
+                ) : null}
+                <Page
+                    key={pageNumber}
+                    pageNumber={pageNumber}
+                    onRenderSuccess={() => setRenderedPageNumber(pageNumber)}
+                    width={pageWidth}
+                />
+            </Document>
+
             <div className={"pagination"}>
                 <button type="button" disabled={pageNumber <= 1} onClick={previousPage}>
                     Previous
@@ -72,19 +97,7 @@ const CustomPDFViewer = ({ children }) => {
                     Next
                 </button>
             </div>
-            <Document file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess}>
-                {isLoading && renderedPageNumber ? (
-                    <Page
-                        key={renderedPageNumber}
-                        className="prevPage"
-                        pageNumber={renderedPageNumber}/>
-                ) : null}
-                <Page
-                    key={pageNumber}
-                    pageNumber={pageNumber}
-                    onRenderSuccess={() => setRenderedPageNumber(pageNumber)}
-                />
-            </Document>
+
         </div>
     );
 }
