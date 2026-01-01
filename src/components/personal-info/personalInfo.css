@@ -8,27 +8,7 @@
     max-width: 100%;
 }
 
-/* picture */
 
-.cv-picture-container{
-    display: block;
-    min-height: 40%;
-}
-
-
-#avatar-edit{
-    max-height: 100px;
-    /*border-radius: 50%;*/
-}
-
-
-
-
-
-.cv-picture-input:hover{
-    cursor: pointer;
-
-}
 
 
 /* personal data */
@@ -49,9 +29,6 @@
 .contact-info >div{
     display: flex;
     flex-direction: column;
-    /*
-    justify-content: stretch;
-    */
     width: max-content;
     margin-right: 1em;
 }
