@@ -33,7 +33,7 @@ function CvSectionComponent({data, skills, title,icon,Editor}) {
             therefore i passed only the first element of the array
             */}
             {data?<Items data={data} callback={setEditing} setKeyOfElementToEdit={setKeyOfElementToEdit} EditorName = {Editor.name}> </Items>:null}
-            {title =='Skills'?<Editor skills = {skills[0]}> </Editor>:null}
+            {title =='Skills'?<Editor data = {skills}> </Editor>:null}
 
 
 

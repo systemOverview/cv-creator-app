@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 
 
 function CVSkills({skillsData}){
-    if (skillsData==undefined || skillsData.length==0){
+    if (skillsData==undefined || skillsData.length==0 || skillsData[0].skillName==null){
         return;
     }
     let skillsText = "";

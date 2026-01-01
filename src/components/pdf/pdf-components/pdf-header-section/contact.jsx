@@ -30,18 +30,18 @@ export const ContactInfo = (contactInfo) => {
 
     <View style = {styles.contactSection}>
             <View style = {styles.contactSectionItem}>
-                <Image style = {styles.icon} src={phoneIcon}> </Image>
-                <Text> {phoneNumber}</Text>
+                {phoneNumber!=""?<Image style={styles.icon} src={phoneIcon}> </Image>:null}
+                {phoneNumber!=""?<Text> {phoneNumber}</Text>:null}
             </View>
 
             <View style = {styles.contactSectionItem}>
-                <Image style = {styles.icon} src={emailIcon}> </Image>
-                <Text >{email}</Text>
+                {email!=""?<Image style={styles.icon} src={emailIcon}> </Image>:null}
+                {email!=""?<Text>{email}</Text>:null}
             </View>
 
             <View style = {styles.contactSectionItem}>
-                <Image style = {styles.icon} src={addressIcon}> </Image>
-                <Text >{address}</Text>
+                {address!=""?<Image style={styles.icon} src={addressIcon}> </Image>:null}
+                {address!=""?<Text>{address}</Text>:null}
             </View>
 
         </View>

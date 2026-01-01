@@ -40,6 +40,8 @@ export class skillsData {
         )
     }
 
+
+
     removeSkill(){
         this._setterFunction(
             prev=>prev.filter(skill=>skill.key!=this._key)

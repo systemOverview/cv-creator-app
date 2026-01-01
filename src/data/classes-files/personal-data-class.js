@@ -6,7 +6,7 @@ export class personalData {
     set setterFunction(value) {
         this._setterFunction = value;
     }
-    constructor(name, title, photo, email, phoneNumber, address) {
+    constructor(name="", title="", photo="", email="", phoneNumber="", address="") {
 
         this._name = name;
         this._title = title;

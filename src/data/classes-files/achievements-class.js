@@ -20,7 +20,7 @@ export default class Achievement{
     }
 
 
-    constructor(achievement) {
+    constructor(achievement="") {
         this._achievementText =  achievement;
         this._achievementKey =  generateRandomId();
         this._achievementPlaceholder = achievementsList[getRandomInt(0, achievementsList.length - 1)]

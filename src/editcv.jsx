@@ -12,11 +12,8 @@ import jobIcon from "./assets/job.svg"
 import personalIcon from "./assets/personal.svg"
 import educationIcon from "./assets/education.svg"
 import skillsIcon from "./assets/skills.svg"
-function EditCvSection({personalData, educationData, experienceData, skillsData, setName}) {
-
-    const [isEditingExperience, setEditingExperience] = useState(false);
-    const [experienceList, setExperienceList] = useState(experienceExamples)
-    const [skillsList, setSkillsList] = useState(skillsExamples)
+function EditCvSection({personalData, educationData, experienceData, skillsData}) {
+    console.log(skillsData)
     return (
 
 
@@ -27,7 +24,7 @@ function EditCvSection({personalData, educationData, experienceData, skillsData,
                                 Editor={EducationEditor}/>
             <CvSectionComponent data={experienceData} title={"Professional experience"} icon={jobIcon}
                                 Editor={ExperienceEditor}/>
-            <CvSectionComponent skills={skillsData} setData={setSkillsList} title={"Skills"} icon={skillsIcon}
+            <CvSectionComponent skills={skillsData} title={"Skills"} icon={skillsIcon}
                                 Editor={SkillsEditor}/>
 
         </section>

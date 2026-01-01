@@ -33,60 +33,70 @@ export const titleExamples= [
 ];
 // personal data example
 export const firstPersonalDataExample = new personalData("John Doe", titleExamples[getRandomInt(0,titleExamples.length)], null, "John.doe@gmail.com", "0123456789", "Marktplatz 15")
-
 // experience examples
-let firstExperienceExample = new experienceData("Google", "Munich", "Junior Fullstack developer", "12/2022", "07/2025", [
-    "Increased sales by 25% within the first year by implementing a new customer acquisition strategy.",
-    "Led a team of 5 to complete a project 2 weeks ahead of schedule, exceeding client expectations.",
-    "Streamlined company operations, reducing overhead costs by 15% through process automation.",
-])
-
-let secondExperienceExample = new experienceData("Facebook", "California", "Product Manager", "12/2022", "07/2025", [
-    "Increased sales by 25% within the first year by implementing a new customer acquisition strategy.",
-    "Led a team of 5 to complete a project 2 weeks ahead of schedule, exceeding client expectations.",
-    "Streamlined company operations, reducing overhead costs by 15% through process automation.",
-])
-
-let thirdExperienceExample = new experienceData(
-    "TechSolutions",
-    "Berlin",
-    "Senior Software Engineer",
-    "01/2021",
-    "12/2025",
+let firstExperienceExample = new experienceData(
+    "Junior Business Analyst",
+    "Amsterdam",
+    "Retail Solutions Ltd.",
+    "08/2022",
+    "03/2024",
     [
-        "Led the development of a scalable cloud platform that increased user engagement by 30%.",
-        "Optimized backend processes, reducing server response time by 50%.",
-        "Introduced automated testing procedures, cutting bug rates by 40% in production.",
-        "Mentored 6 junior developers, all of whom advanced to senior roles within 18 months.",
-        "Implemented a real-time analytics feature, increasing customer satisfaction by 20%.",
-        "Collaborated with the marketing team to integrate machine learning models, boosting ad targeting efficiency by 25%.",
-        "Designed and implemented a secure API, reducing unauthorized access attempts by 90%.",
-        "Created a comprehensive documentation system that decreased onboarding time for new hires by 35%.",
-        "Negotiated vendor contracts that saved the company over $100,000 annually in software licensing.",
-        "Developed a cross-platform mobile app that gained over 1 million downloads in the first 6 months."
+        "Analyzed sales and customer data to identify trends that supported strategic planning decisions.",
+        "Built and maintained reports and dashboards to track key performance indicators.",
+        "Collaborated with cross-functional teams to evaluate and improve internal business processes.",
+        "Presented insights and recommendations to senior analysts and managers."
     ]
 );
+
+let secondExperienceExample = new experienceData(
+    "Business Analyst",
+    "Global Consulting Group",
+    "Paris",
+    "04/2024",
+    "12/2025",
+    [
+        "Led end-to-end analysis for client projects, translating business requirements into actionable insights.",
+        "Conducted market and competitor analyses to support international expansion strategies.",
+        "Improved reporting workflows, reducing analysis turnaround time through better data organization.",
+        "Mentored junior analysts and reviewed their work for accuracy and clarity."
+    ]
+);
+
 
 
 export const experienceExamples = [
     firstExperienceExample,
     secondExperienceExample,
-    thirdExperienceExample
 ]
 
 // education examples
 
-let firstEducationExample = new educationData("Hochschule Darmstadt", "Bachelor in Computer science", "12/2022", "07/2025", [
-    "Increased sales by 25% within the first year by implementing a new customer acquisition strategy.",
-    "Led a team of 5 to complete a project 2 weeks ahead of schedule, exceeding client expectations.Increased sales by 25% within the first year by implementing a new customer acquisition strategy.Increased sales by 25% within the first year by implementing a new customer acquisition strategy.",
-    "Streamlined company operations, reducing overhead costs by 15% through process automation.",
-])
+let firstEducationExample = new educationData(
+    "University of Barcelona",
+    "Bachelor of Economics",
+    "09/2016",
+    "06/2020",
+    [
+        "Graduated in the top 20% of the cohort with strong performance in microeconomics and econometrics.",
+        "Completed a capstone project analyzing market behavior using real-world economic data.",
+        "Worked in team-based assignments to model economic scenarios and present findings clearly.",
+        "Developed strong analytical and quantitative reasoning skills through applied coursework."
+    ]
+);
 
-let secondEducationExample = new educationData("TU Munich", "Masters in Computer science", "12/2022", "07/2025", [
-    "Increased sales by 25% within the first year by implementing a new customer acquisition strategy.",
-    "Led a team of 5 to complete a project 2 weeks ahead of schedule, exceeding client expectations.",
-    "Streamlined company operations, reducing overhead costs by 15% through process automation.",
-])
+let secondEducationExample = new educationData(
+    "University of Amsterdam",
+    "Master of International Business",
+    "09/2020",
+    "07/2022",
+    [
+        "Specialized in global strategy and cross-cultural management through advanced seminars.",
+        "Led a research project on international market entry strategies for emerging economies.",
+        "Applied statistical and qualitative analysis methods to business case studies.",
+        "Graduated with distinction based on thesis quality and academic performance."
+    ]
+);
+
 
 function generateNewExperienceHolder(){
     return (new experienceData("", "", "","","",[]))
@@ -102,9 +112,7 @@ export let newDataHolders = {
 }
 
 
-/*
-let thirdEducationExample = new educationData("TU Munich", "Masters in Computer science", "12/2022", "07/2025", null)
-*/
+
 
 export const educationExamples = [
     firstEducationExample,
@@ -112,12 +120,21 @@ export const educationExamples = [
 ]
 // skills Examples
 
-let firstSkillExample = new skillsData("C++")
-let secondSkillExample = new skillsData("React")
-let thirdSkillExample = new skillsData("Python")
+let firstSkillExample = new skillsData("Data Analysis")
+let secondSkillExample = new skillsData("Market Research")
+let thirdSkillExample = new skillsData("Reporting")
 
 export let skillsExamples = [
     firstSkillExample,
     secondSkillExample,
     thirdSkillExample
 ]
+
+let emptyPersonalData = new personalData();
+let emptyEducationData = new educationData();
+let emptyExperienceData = new experienceData();
+let emptySkillsData = new skillsData();
+
+export let emptyData = {
+    emptyPersonalData : emptyPersonalData,
+}

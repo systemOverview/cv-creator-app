@@ -51,7 +51,7 @@ export class educationData {
         )
     }
 
-    constructor(schoolName, schoolDegree, startDate, endDate, achievements, setterFunction = null) {
+    constructor(schoolName="", schoolDegree="", startDate="", endDate="", achievements=[], setterFunction = null) {
         this._schoolName = schoolName;
         this._schoolDegree = schoolDegree;
         this._startDate = startDate;

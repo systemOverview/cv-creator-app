@@ -1,5 +1,4 @@
 import {generateRandomId, getRandomInt} from "../../components/helper.js";
-import {achievementsList} from "../cv-data-examples.js";
 import Achievement from "./achievements-class.js"
 
 export class experienceData {
@@ -54,7 +53,7 @@ export class experienceData {
         )
     }
 
-    constructor(companyName, companyLocation, title, startDate, endDate, achievements, setterFunction = null) {
+    constructor(companyName="", companyLocation="", title="", startDate="", endDate="", achievements=[], setterFunction = null) {
         this._companyName = companyName;
         this._companyLocation = companyLocation;
         this._title = title;

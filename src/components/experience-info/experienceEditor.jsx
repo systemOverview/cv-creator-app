@@ -1,20 +1,14 @@
-import DatePicker from "../date.jsx";
-import date from "../date.jsx";
+import {useState} from "react"
 import Achievements from "../achievements.jsx";
-import {useState} from "react";
 import {dateInputFormatter, whichDateIsBigger} from "../helper.js"
 import {dateDefaultValueFormatter} from "../helper.js"
 
-function showDatePicker(index){
-    let datePicker = document.getElementsByClassName("date-picker")[index];
-    datePicker.classList.remove("hidden")
-}
+
 
 
 
 function ExperienceEditor({keyOfElementToEdit, callback, data}){
-    let experienceData = data[0];
-    let setExperienceData = data[1];
+
     let [formError, setFormError] = useState(null)
     let [dateError, setDateError] = useState(null)
     function additem(){
@@ -31,9 +25,20 @@ function ExperienceEditor({keyOfElementToEdit, callback, data}){
         element.removeSelf();
         callback(false)
     }
-    let element;
 
-     element = data[0].find(
+    // Closing the editor when a button that changes all the data is clicked to prevent
+    // a bug that happens because then the user is editing an inexisting element
+    document.getElementById("reset-form").addEventListener("click",()=>{
+        callback(false)
+    })
+
+    document.getElementById("load-example").addEventListener("click",()=>{
+        callback(false)
+    })
+
+
+
+    let element = data[0].find(
         experienceEntry =>{
             return experienceEntry.key == keyOfElementToEdit;
         }
@@ -41,7 +46,7 @@ function ExperienceEditor({keyOfElementToEdit, callback, data}){
     function dateInputHandler(propretyToChange, date){
 
         let fromDate = document.getElementById("from-date-input").value;
-        let toDate = document.getElementById("to-date-input").value;
+        let toDate = document.getElementById("experience-to-date-input").value;
         if(whichDateIsBigger(fromDate, toDate)==fromDate && toDate!=""){
             setDateError(<p className={"date-error"}> The end date must be after the start date </p>)
             if (propretyToChange=="startDate"){
@@ -114,9 +119,9 @@ function ExperienceEditor({keyOfElementToEdit, callback, data}){
                 </div>
 
                 <div className={"date-input horizontal-element-input"}>
-                    <label htmlFor={"to-date-input"}> To </label>
+                    <label htmlFor={"experience-to-date-input"}> To </label>
                     <input
-                        id="to-date-input"
+                        id="experience-to-date-input"
                         type={"month"}
                         placeholder={"MM/YYYY"}
                         defaultValue={dateDefaultValueFormatter(element.endDate)}
@@ -129,17 +134,13 @@ function ExperienceEditor({keyOfElementToEdit, callback, data}){
                             id={"till-present-checkbox"}
                             onChange={(e)=>{
                                 if (e.target.checked) {
-                                    const date = new Date();
-                                    const year = date.getFullYear();
-                                    let month = date.getMonth() + 1;
-                                    if (month < 10) {
-                                        month = "0" + month; //padding
-                                    }
-                                    dateInputHandler("endDate", year + "-" + month)
-                                    document.getElementById("to-date-input").disabled = true;
+                                    element["endDate"] = "Present";
+                                    document.getElementById("experience-to-date-input").disabled = true;
                                 }
                                 else{
-                                    document.getElementById("to-date-input").disabled = false;
+                                    document.getElementById("experience-to-date-input").disabled = false;
+                                    let prevDate = document.getElementById("experience-to-date-input").value;
+                                    dateInputHandler("endDate", prevDate)
                                 }
                             }}
                         />

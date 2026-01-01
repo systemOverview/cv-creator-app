@@ -1,8 +1,6 @@
-import DatePicker from "../date.jsx";
-import date from "../date.jsx";
 import Achievements from "../achievements.jsx";
-import {useState} from "react";
 import "./educationEditor.css"
+import {useState} from "react"
 import {whichDateIsBigger} from "../helper.js"
 import {dateInputFormatter} from "../helper.js"
 import {dateDefaultValueFormatter} from "../helper.js"
@@ -11,8 +9,6 @@ import {dateDefaultValueFormatter} from "../helper.js"
 
 
 function EducationEditor({keyOfElementToEdit, callback, data}){
-    let educationData = data[0];
-    let setEducationData = data[1];
     let [formError, setFormError] = useState(null)
     let [dateError, setDateError] = useState(null)
     function additem(){
@@ -29,6 +25,15 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
         element.removeSelf();
         callback(false)
     }
+    // Closing the editor when a button that changes all the data is clicked to prevent
+    // a bug that happens because then the user is editing an inexisting element
+    document.getElementById("reset-form").addEventListener("click",()=>{
+       callback(false)
+    })
+
+    document.getElementById("load-example").addEventListener("click",()=>{
+        callback(false)
+    })
 
 
     let element = data[0].find(
@@ -39,7 +44,11 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
 
     function dateInputHandler(propretyToChange, date){
         let fromDate = document.getElementById("from-date-input").value;
-        let toDate = document.getElementById("to-date-input").value;
+        let toDate = document.getElementById("education-to-date-input").value;
+        if (toDate=="Present"){
+            let d = new Date();
+            toDate = d.getFullYear()+"-"+d.getMonth() // convert it to comparable format
+        }
         if(whichDateIsBigger(fromDate, toDate)==fromDate && toDate!=""){
             setDateError(<p className={"date-error"}> The end date must be after the start date </p>)
             if (propretyToChange=="startDate"){
@@ -97,9 +106,9 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
                 </div>
 
                 <div className={"date-input horizontal-element-input"}>
-                    <label htmlFor={"to-date-input"}> To </label>
+                    <label htmlFor={"education-to-date-input"}> To </label>
                     <input
-                        id="to-date-input"
+                        id="education-to-date-input"
                         type={"month"}
                         placeholder={"MM/YYYY"}
                         defaultValue={dateDefaultValueFormatter(element.endDate)}
@@ -109,21 +118,18 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
                         <input
                             type={"checkbox"}
                             id={"till-present-checkbox"}
+
                             onChange={(e)=>{
                                 if (e.target.checked) {
-                                    const date = new Date();
-                                    const year = date.getFullYear();
-                                    let month = date.getMonth() + 1;
-                                    if (month < 10) {
-                                        month = "0" + month; //padding
-                                    }
-                                    dateInputHandler("endDate", year + "-" + month)
-                                    document.getElementById("to-date-input").disabled = true;
+                                    element["endDate"] = "Present";
+                                    document.getElementById("education-to-date-input").disabled = true;
                                 }
                                 else{
-                                    document.getElementById("to-date-input").disabled = false;
+                                    document.getElementById("education-to-date-input").disabled = false;
+                                    let prevDate = document.getElementById("education-to-date-input").value;
+                                    dateInputHandler("endDate", prevDate)
                                 }
-                        }}
+                            }}
                         />
                         <label htmlFor={"till-present-checkbox"}> Till present </label>
                     </div>

@@ -108,6 +108,22 @@ button {
 
 /* container */
 
+.state-buttons{
+    display: flex;
+    margin-left: 2em;
+    gap: 1em
+}
+
+.reset-form-button{
+    background-color: red;
+    color: white;
+}
+
+.load-example-button{
+    background-color: cadetblue;
+    color: white
+}
+
 .container {
     width: 90%;
     margin: 2em auto 0 auto;
@@ -144,7 +160,7 @@ button {
 
 /*media*/
 
-@media only screen and (max-width: 1650px) {
+/*@media only screen and (max-width: 1650px) {
     .left-container{
 
         width: fit-content;
@@ -154,7 +170,7 @@ button {
     .container{
         margin-left: 0;
     }
-}
+}*/
 
 @media only screen and (max-width: 1400px) {
 
@@ -193,7 +209,9 @@ button {
         margin-top: 0;
     }
 
-
+    .state-buttons{
+        margin-left: 0.5em;
+    }
     .left-container{
         min-width: 100%;
         margin: 0;

@@ -7,8 +7,6 @@ function PersonalInfoSection({data, title, icon}) {
     const [isSectionExpanded, setSectionExpansion] = useState(false);
     const [isEditing, setEditing] = useState(false);
     const [elementToEdit, setElementToEdit] = useState(null); // pass the element to edit if the user wants to edit an existing element, null to create a new one
-
-// title
     return <div className={"cv-section"}>
         <div className={"cv-section-info"}>
             <div className={"cv-section-info-title"}>

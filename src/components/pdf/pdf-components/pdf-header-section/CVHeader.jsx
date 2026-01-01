@@ -1,4 +1,4 @@
-import {Canvas, Text} from "@react-pdf/renderer";
+import {Canvas, Text, View} from "@react-pdf/renderer";
 import ContactInfo from "./contact.jsx";
 import {StyleSheet} from "@react-pdf/renderer";
 
@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
 function CVHeader({personalData}) {
 
 
-    return <section className={"header"}>
-        <Text style={styles.fullName} fixed>{personalData.name}</Text>
+    return <View>
+        {personalData.name!=""?<Text style={styles.fullName} fixed>{personalData.name}</Text>:null}
 
-        <Text style={styles.title}> {personalData.title}</Text>
+        {personalData.title!=""?<Text style={styles.title} fixed>{personalData.title}</Text>:null}
 
         <ContactInfo
             phoneNumber={personalData.phoneNumber}
@@ -43,7 +43,7 @@ function CVHeader({personalData}) {
 
 
 
-    </section>;
+    </View>;
 }
 
 export default CVHeader

@@ -8,17 +8,13 @@ import {skillsExamples} from "./data/cv-data-examples.js";
 import Editcv from "./editcv.jsx";
 import MyDocument from "./components/pdf/pdf.jsx";
 import CustomPDFViewer from "./components/pdf/pdfPreview.jsx";
-
+import {emptyData} from "./data/cv-data-examples.js"
 const App = () => {
-
-    const [name, setName] = useState("nsull");
     const [personalData, setPersonalData] = useState(firstPersonalDataExample)
     const [educationData,setEducationData] = useState(educationExamples)
     const [experienceData, setExperienceData] = useState(experienceExamples)
     const [skillsData, setSkillsData] = useState(skillsExamples)
     const [width, setWidth] = useState(null);
-
-
 
     useEffect(() => {
         // Link the state setting function for all objects
@@ -35,8 +31,7 @@ const App = () => {
         )
 
         personalData.setterFunction = setPersonalData;
-    }, [educationData, experienceData, skillsData]);
-    let arr = [1];
+    }, [personalData,educationData, experienceData, skillsData]);
 
     let CV =             <MyDocument
         personalData={personalData}
@@ -46,10 +41,27 @@ const App = () => {
     >
     </MyDocument>
 
+    function resetData() {
+        setPersonalData(emptyData.emptyPersonalData)
+        setEducationData([])
+        setExperienceData([])
+        setSkillsData([])
+    }
+
+    function loadExamples(){
+        setPersonalData(firstPersonalDataExample)
+        setEducationData(educationExamples)
+        setExperienceData(experienceExamples)
+        setSkillsData(skillsExamples)
+    }
     return(
     <div className={"container"}>
 
     <div className={"left-container"}>
+        <div className={"state-buttons"}>
+            <button onClick={loadExamples} className={"load-example-button"} id={"load-example"}> Load example</button>
+            <button onClick={resetData} className={"reset-form-button"} id={"reset-form"} > Reset form </button>
+        </div>
         <Editcv
             personalData = {[personalData, setPersonalData]}
             educationData = {[educationData,setEducationData]}
@@ -58,7 +70,7 @@ const App = () => {
             >
         </Editcv>
 
-        <PDFDownloaderButton  name = {personalData.name} doc = {CV}>
+        <PDFDownloaderButton  name = {personalData?personalData.name:""} doc = {CV}>
 
         </PDFDownloaderButton>
     </div>
