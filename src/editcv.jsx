@@ -1,5 +1,4 @@
 import "./styles/editcv.css"
-import { jsPDF } from "jsPDF"
 import {useState, memo} from 'react'
 import CvSectionComponent from "./components/cvSection.jsx";
 import ExperienceEditor from "./components/experience-info/experienceEditor.jsx";
