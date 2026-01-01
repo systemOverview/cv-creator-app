@@ -29,7 +29,7 @@ function PersonalInfoEditor({data, collapseFunction}){
                     <label htmlFor={"personal-title-input"}> Professional title </label>
                     <input id={"personal-title-input"}
 /*
-                           placeholder={stitleExamples[getRandomInt(0,titleExamples.length)]}
+                           placeholder={titleExamples[getRandomInt(0,titleExamples.length)]}
 */
                         placeholder={title}
                            value={data ? data.title : ""}
