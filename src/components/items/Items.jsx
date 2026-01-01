@@ -3,7 +3,6 @@ import pen from "/src/assets/pen.svg"
 import redTrash from "/src/assets/red-trash.svg"
 
 import "./items.css"
-import ExperienceEditor from "../experience-info/experienceEditor.jsx";
 import {newDataHolders} from "../../data/cv-data-examples.js"
 function ItemsGenerator({items, setterFunction, setEditing, setKeyOfElementToEdit}){
 
