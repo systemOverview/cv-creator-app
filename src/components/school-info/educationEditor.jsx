@@ -7,10 +7,6 @@ import {whichDateIsBigger} from "../helper.js"
 import {dateInputFormatter} from "../helper.js"
 import {dateDefaultValueFormatter} from "../helper.js"
 
-function showDatePicker(index){
-    let datePicker = document.getElementsByClassName("date-picker")[index];
-    datePicker.classList.remove("hidden")
-}
 
 
 
@@ -24,7 +20,6 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
             setFormError(<p className={"form-error"}> School name must be set, add it or discard the entry if you don't need it </p>)
         }
         else {
-            console.log(element.schoolName)
             setFormError(null)
             element.removeEmptyAchievements();
             callback(false);
@@ -127,13 +122,15 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
             <label> Achievements </label>
             <Achievements data={data} keyOfElementToEdit = {keyOfElementToEdit} />
                 {formError}
+            <div className={"form-action-buttons"}>
             <button onClick={additem} className={"done-button"}>
                 Done
             </button>
 
             <button onClick={discarditem} className={"discard-button"}>
-                Discard
+                Discard (delete)
             </button>
+            </div>
 
         </div>
     )

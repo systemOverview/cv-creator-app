@@ -134,6 +134,7 @@ function ExperienceEditor({keyOfElementToEdit, callback, data}){
             <label> Achievements </label>
             <Achievements  data={data} keyOfElementToEdit = {keyOfElementToEdit}/>
                 {formError}
+            <div className={"form-action-buttons"}>
             <button onClick={additem} className={"done-button"}>
                 Done
             </button>
@@ -141,6 +142,7 @@ function ExperienceEditor({keyOfElementToEdit, callback, data}){
             <button onClick={discarditem} className={"discard-button"}>
                 Discard
             </button>
+            </div>
 
         </div>
     )

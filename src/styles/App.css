@@ -169,7 +169,7 @@ label{
 }
 
 .hidden{
-    display: none;
+    display: none !important;
 }
 
 .icon{
@@ -276,6 +276,32 @@ button {
 
 
 @media only screen and (max-width: 1000px) {
+    h3{
+        font-size: 0.8em;
+    }
+    label {
+        font-size: 0.65em;
+    }
+
+    .add-achievement-button{
+        font-size: 0.5em;
+        margin: 0 auto;
+    }
+
+    .contact-info>*{
+        min-width: 100%;
+    }
+    button {
+        font-size: 0.8em;
+    }
+    button.done-button{
+        padding: 0.5em 1.5em;
+        margin-bottom: 0.2em;
+    }
+
+    button.discard-button{
+        margin-top: 0;
+    }
 
     .left-container{
         min-width: 100%;
@@ -300,4 +326,8 @@ button {
     .data-modifier-box{
         margin: 0 0.5em
     }
+}
+/* TODO move */
+.add-achievement-icon{
+    pointer-events: none;
 }
