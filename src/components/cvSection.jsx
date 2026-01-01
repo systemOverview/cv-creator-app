@@ -29,9 +29,6 @@ function CvSectionComponent({data, skills, title,icon,Editor}) {
             </div>
         </div>
         <div className={`items-holder ${isSectionExpanded ? "items-open" : "items-closed"}`}>
-            {/* data is an array of the data itself, and a state function, items generator only needs the data
-            therefore i passed only the first element of the array
-            */}
             {data?<Items data={data} callback={setEditing} setKeyOfElementToEdit={setKeyOfElementToEdit} EditorName = {Editor.name}> </Items>:null}
             {title =='Skills'?<Editor data = {skills}> </Editor>:null}
 

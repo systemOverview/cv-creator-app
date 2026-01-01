@@ -23,14 +23,14 @@
 .contact-info{
     min-width: 100%;
     display: flex;
-    flex-wrap: wrap;
+    gap: 1em
 }
 
 .contact-info >div{
     display: flex;
     flex-direction: column;
     width: max-content;
-    margin-right: 1em;
+    flex: 1 1 auto;
 }
 
 .contact-info div:last-child{
