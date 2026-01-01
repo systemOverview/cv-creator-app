@@ -38,7 +38,6 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
     )
 
     function dateInputHandler(propretyToChange, date){
-
         let fromDate = document.getElementById("from-date-input").value;
         let toDate = document.getElementById("to-date-input").value;
         if(whichDateIsBigger(fromDate, toDate)==fromDate && toDate!=""){
@@ -106,6 +105,28 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
                         defaultValue={dateDefaultValueFormatter(element.endDate)}
                         onChange={e=>{dateInputHandler("endDate",e.target.value)}}
                     />
+                    <div className={"till-present"}>
+                        <input
+                            type={"checkbox"}
+                            id={"till-present-checkbox"}
+                            onChange={(e)=>{
+                                if (e.target.checked) {
+                                    const date = new Date();
+                                    const year = date.getFullYear();
+                                    let month = date.getMonth() + 1;
+                                    if (month < 10) {
+                                        month = "0" + month; //padding
+                                    }
+                                    dateInputHandler("endDate", year + "-" + month)
+                                    document.getElementById("to-date-input").disabled = true;
+                                }
+                                else{
+                                    document.getElementById("to-date-input").disabled = false;
+                                }
+                        }}
+                        />
+                        <label htmlFor={"till-present-checkbox"}> Till present </label>
+                    </div>
                 </div>
             </div>
 
