@@ -50,8 +50,8 @@ let firstExperienceExample = new experienceData(
 
 let secondExperienceExample = new experienceData(
     "Business Analyst",
-    "Global Consulting Group",
     "Paris",
+    "Global Consulting Group",
     "04/2024",
     "12/2025",
     [
