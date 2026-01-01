@@ -60,11 +60,8 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
 
     return (
         <div className={"data-modifier-box"}>
-
-
-            <div className={"school-input"}>
-
-                <div className={"school-name"}>
+            <div className={"school-input horizontal-multiple-input-holder"}>
+                <div className={"school-name horizontal-element-input"}>
                     <label htmlFor={"school-name-input"}> School name </label>
                     <input
                         id={"school-name-input"}
@@ -75,7 +72,7 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
                     />
                 </div>
 
-                <div className={"school-degree"}>
+                <div className={"school-degree horizontal-element-input"}>
                     <label htmlFor={"school-degree-input"}> Degree name </label>
                     <input
                         id={"school-degree-input"}
@@ -89,8 +86,8 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
             </div>
 
 
-            <div className={"dates-input"}>
-                <div className={"date-input from-date"}>
+            <div className={"dates-input horizontal-multiple-input-holder"}>
+                <div className={"date-input from-date horizontal-element-input"}>
                     <label htmlFor={"from-date-input"}> From </label>
                     <input id="from-date-input"
                            type={"month"}
@@ -100,8 +97,8 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
                     />
                 </div>
 
-                <div className={"date-input"}>
-                    <label htmlFor={"to-date-input to-date"}> To </label>
+                <div className={"date-input horizontal-element-input"}>
+                    <label htmlFor={"to-date-input"}> To </label>
                     <input
                         id="to-date-input"
                         type={"month"}
@@ -114,10 +111,7 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
 
             {dateError}
 
-            <div className={"university-descritpion"}>
-                <label> Description (text area )</label>
-                <textarea className={"description-input"} type={"text"}> </textarea>
-            </div>
+
 
             <label> Achievements </label>
             <Achievements data={data} keyOfElementToEdit = {keyOfElementToEdit} />

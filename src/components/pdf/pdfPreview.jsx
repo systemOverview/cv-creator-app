@@ -61,7 +61,6 @@ const CustomPDFViewer = ({ children }) => {
     else{
         pageWidth=null;
     }
-    console.log(width)
     return (
         <div>
 

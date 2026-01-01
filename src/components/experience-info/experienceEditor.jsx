@@ -67,12 +67,6 @@ function ExperienceEditor({keyOfElementToEdit, callback, data}){
 
     return (
         <div className={"data-modifier-box"} id={"experience-data-modifier-box"}>
-{/*
-
-            <h3 className={"data-modifier-title"}> Experience</h3>
-*/}
-
-
             <div class={"horizontal-multiple-input-holder"}>
                 <div className={"company-input horizontal-element-input"}>
                     <label htmlFor="company-name-input"> Company name </label>
@@ -108,8 +102,8 @@ function ExperienceEditor({keyOfElementToEdit, callback, data}){
                 />
             </div>
 
-            <div className={"dates-input"}>
-                <div className={"date-input from-date"}>
+            <div className={"dates-input horizontal-multiple-input-holder"}>
+                <div className={"date-input from-date horizontal-element-input"}>
                     <label htmlFor={"from-date-input"}> From </label>
                     <input id="from-date-input"
                            type={"month"}
@@ -119,8 +113,8 @@ function ExperienceEditor({keyOfElementToEdit, callback, data}){
                     />
                 </div>
 
-                <div className={"date-input"}>
-                    <label htmlFor={"to-date-input to-date"}> To </label>
+                <div className={"date-input horizontal-element-input"}>
+                    <label htmlFor={"to-date-input"}> To </label>
                     <input
                         id="to-date-input"
                         type={"month"}
@@ -140,7 +134,7 @@ function ExperienceEditor({keyOfElementToEdit, callback, data}){
             </button>
 
             <button onClick={discarditem} className={"discard-button"}>
-                Discard
+                Discard (Delete)
             </button>
             </div>
 

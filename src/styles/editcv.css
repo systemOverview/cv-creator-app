@@ -1,6 +1,4 @@
-*{
-    margin: 0;
-}
+
 
 .edit-cv-section{
     margin-top: 1em;
@@ -28,44 +26,29 @@
     align-items: center;
 }
 
-.cv-section-info-title>*{
-
-}
-
 .dropdown{
     padding: 0;
     margin: 0 0 0 auto;
 }
 
-
-.add-item{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
 /*
-.add-item-button{
-    font-size: 0.8em;
-    background-color: #c2d5c2;
-    color: #1d1913;
-    border-radius: 10px;
-    width: 40%;
-    margin-top: 1em;
-}
-*/
+.add-item{
+    !*
+    width: 100%;
+    *!
+    !*
+    display: flex;
+    *!
+    !*
+    justify-content: center;
+    *!
+}*/
+
 
 .icon-button{
-    background: none;
-    margin: 0;
     padding: 0;
 }
 
-
-
- .edit-cv-section .dropdown button:hover{
-     border: none;
- }
 
  /* collapsible */
 
@@ -75,6 +58,7 @@
     transition: max-height 1s ease-in;
     transition-delay: -0.7s;
 }
+
 
 
 .items-open{
@@ -89,9 +73,7 @@
 
 
 .edit-cv-section > * {
-    /*
-    box-sizing: border-box;
-    */
+
     margin-bottom: 1em;
 }
 
@@ -143,22 +125,23 @@
     background-position: right center;
 }
 
-/* FORM TODO most of the form css is in app.css, must be refactored /*
- */
-.school-input{
+/* FORM */
+/* TODO most of the form css is in app.css, must be refactored */
+
+.horizontal-multiple-input-holder{
     display: flex;
     flex-direction: row;
+    gap: 0 1em;
+    flex-wrap: wrap;
 }
 
-.school-name{
-    margin-right: 1em;
-}
-.school-name, .school-degree{
+
+.horizontal-element-input{
     display: flex;
     flex-direction: column;
-    width: 100%;
-
+    flex: 1 1 auto;
 }
+
 
 .delete-button{
     cursor: pointer;
@@ -167,15 +150,38 @@
 /* achievements */
 .add-achievement-button{
     display: flex;
-    border: 2px solid lightgreen;
+    border: 2px solid #468246;
     align-items: center;
     width: fit-content;
+    color: inherit;
+    margin-top: 0.3em;
+
 }
 
 .add-achievement-icon{
     margin-right: 1em;
+    pointer-events: none;
 }
 
 .add-achievement-icon:hover{
     border: 2px solid lightgreen;
+}
+
+.achievements-input{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.achievement{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+
+.achievement svg{
+    height: 25px;
+    margin-left: 1em;
 }
