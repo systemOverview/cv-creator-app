@@ -66,78 +66,57 @@ export class experienceData {
         );
         this._key = generateRandomId();
         this._setterFunction = setterFunction;
-
-
     }
 
 
     set companyName(value) {
-        this.changeObjectInData("_companyName", value)
+        this._companyName = value;
     }
 
     set companyLocation(value) {
-        this.changeObjectInData("_companyLocation", value)
+        this._companyLocation = value;
     }
 
     set title(value) {
-        this.changeObjectInData("_title", value)
+        this._title = value;
     }
 
     set startDate(value) {
-        this.changeObjectInData("_startDate", value)
+        this._startDate = value;
     }
 
     set endDate(value) {
-        this.changeObjectInData("_endDate", value)
+        this._endDate = value;
     }
 
-    set achievements(value) {
-
+    set setterFunction(value) {
+        this._setterFunction = value;
     }
 
     addAchievement(){
-        let updatedAchievementsList = [...this._achievements, new Achievement("")]
-        this.changeObjectInData("_achievements", updatedAchievementsList)
-
+        this._achievements = [...this._achievements, new Achievement("")];
     }
 
-    updateAchievements(achievementToUpdateKey, newAchievementValue){
-        let updatedAchievementsList = this._achievements.map(
-            achievement=>{
-                if (achievement.achievementKey == achievementToUpdateKey){
-                    achievement.achievementText = newAchievementValue;
-                    return achievement;
-                }
-                return achievement;
+    updateAchievement(achievementToUpdateKey, newAchievementValue){
+        for (let achievement of this._achievements ){
+            if (achievement.achievementKey==achievementToUpdateKey){
+                achievement.achievementText=newAchievementValue
+                break;
             }
-        )
-        this.changeObjectInData("_achievements", updatedAchievementsList)
+        }
     }
 
     deleteAchievement(keyOfAchievementToDelete){
-        let updatedAchievementsList = this._achievements.filter(
+        this._achievements = this._achievements.filter(
             (achievement)=>{ return achievement.achievementKey!=keyOfAchievementToDelete}
         )
-        this.changeObjectInData("_achievements", updatedAchievementsList)
 
     }
-    //deletes/discards the whole object from the form/pdf
-    removeSelf(){
-        this.setterFunction(
-            prev=>{
-                return(
-                    prev.filter(entry=>entry.key!=this.key)
-                )
-            }
-        )
-    }
-    // if the user creates new achievements inputs and doesn't fill them, this function handles
-    // removing the empty ones when they click done to finish editing
+
     removeEmptyAchievements(){
-        let updatedAchievementsList = this._achievements.filter(
-            (achievement)=>{ return achievement.achievementText!=""}
+        this._achievements = this._achievements.filter(
+            (achievement)=>{return achievement.achievementText!=""}
         )
-        this.changeObjectInData("_achievements", updatedAchievementsList)
     }
 
     set setterFunction(value) {

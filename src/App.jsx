@@ -9,31 +9,26 @@ import Editcv from "./editcv.jsx";
 import MyDocument from "./components/pdf/pdf.jsx";
 import CustomPDFViewer from "./components/pdf/pdfPreview.jsx";
 import {emptyData} from "./data/cv-data-examples.js"
+import {DataHolder} from "./data/cv-data-classes.js"
+import {skillsDataHolder} from "./data/cv-data-classes.js"
+
 const App = () => {
+
+
     const [personalData, setPersonalData] = useState(firstPersonalDataExample)
-    const [educationData,setEducationData] = useState(educationExamples)
-    const [experienceData, setExperienceData] = useState(experienceExamples)
-    const [skillsData, setSkillsData] = useState(skillsExamples)
-    const [width, setWidth] = useState(null);
+    const [educationData, setEducationData] = useState(new DataHolder(educationExamples))
+    const [experienceData, setExperienceData] = useState(new DataHolder(experienceExamples))
+    const [skillsData, setSkillsData] = useState(new skillsDataHolder(skillsExamples))
 
     useEffect(() => {
         // Link the state setting function for all objects
-        educationData.forEach(
-            item=>item.setterFunction = setEducationData
-        )
+        personalData.setterFunction = setPersonalData;;
+        educationData.setterFunction = setEducationData;
+        experienceData.setterFunction = setExperienceData;
+        skillsData.setterFunction = setSkillsData;
+    }, [personalData, educationData, experienceData, skillsData]);
 
-        experienceData.forEach(
-            item=>item.setterFunction = setExperienceData
-        )
-
-        skillsData.forEach(
-            item=>item.setterFunction = setSkillsData
-        )
-
-        personalData.setterFunction = setPersonalData;
-    }, [personalData,educationData, experienceData, skillsData]);
-
-    let CV =             <MyDocument
+    let CV = <MyDocument
         personalData={personalData}
         educationData={educationData}
         experienceData={experienceData}
@@ -43,49 +38,47 @@ const App = () => {
 
     function resetData() {
         setPersonalData(emptyData.emptyPersonalData)
-        setEducationData([])
-        setExperienceData([])
-        setSkillsData([])
+        setEducationData(new DataHolder())
+        setExperienceData(new DataHolder())
+        setSkillsData(new skillsDataHolder())
     }
 
-    function loadExamples(){
+    function loadExamples() {
         setPersonalData(firstPersonalDataExample)
-        setEducationData(educationExamples)
-        setExperienceData(experienceExamples)
-        setSkillsData(skillsExamples)
+        setEducationData(new DataHolder(educationExamples))
+        setExperienceData(new DataHolder(experienceExamples))
+        setSkillsData(new skillsDataHolder(skillsExamples))
     }
-    return(
-    <div className={"container"}>
 
-    <div className={"left-container"}>
-        <div className={"state-buttons"}>
-            <button onClick={loadExamples} className={"load-example-button"} id={"load-example"}> Load example</button>
-            <button onClick={resetData} className={"reset-form-button"} id={"reset-form"} > Reset form </button>
+    return (
+        <div className={"container"}>
+            <div className={"left-container"}>
+                <div className={"state-buttons"}>
+                    <button onClick={loadExamples} className={"load-example-button"} id={"load-example"}> Load example
+                    </button>
+                    <button onClick={resetData} className={"reset-form-button"} id={"reset-form"}> Reset form</button>
+                </div>
+                <Editcv
+                    personalData={personalData}
+                    educationData={educationData}
+                    experienceData={experienceData}
+                    skillsData={skillsData}
+                >
+                </Editcv>
+
+                <PDFDownloaderButton name={personalData ? personalData.name : ""} doc={CV}>
+
+                </PDFDownloaderButton>
+            </div>
+            <div className={"pdf-viewer"}>
+                <CustomPDFViewer>
+                    {CV}
+                </CustomPDFViewer>
+            </div>
+
+
         </div>
-        <Editcv
-            personalData = {[personalData, setPersonalData]}
-            educationData = {[educationData,setEducationData]}
-            experienceData = {[experienceData,setExperienceData]}
-            skillsData = {[skillsData,setSkillsData]}
-            >
-        </Editcv>
-
-        <PDFDownloaderButton  name = {personalData?personalData.name:""} doc = {CV}>
-
-        </PDFDownloaderButton>
-    </div>
-    <div  className={"pdf-viewer"}>
-        <CustomPDFViewer width={width}>
-            {CV}
-        </CustomPDFViewer>
-    </div>
-
-
-
-
-    </div>
     )
-
 
 
 }

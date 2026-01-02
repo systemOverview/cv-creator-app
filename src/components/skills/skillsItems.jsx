@@ -1,11 +1,10 @@
 import {useState} from "react";
 import trash from "../../assets/trash.svg";
 
-function SkillsItemsGenerator(props){
-
+function SkillsItemsGenerator({data}){
     return (
 
-        props.skills.map(
+        data.elements.map(
             (item) =>{
                 let itemKeys = Object.values(item)
                 return (
@@ -13,7 +12,7 @@ function SkillsItemsGenerator(props){
                         <h3> {itemKeys[0]} </h3>
                         <div className={"edit-icon"}>
                                 <img
-                                    onClick={()=>{item.removeSkill()}}
+                                    onClick={()=>{data.removeElement(item.key)}}
                                     src={trash}
                                     className={"icon"}/>
                             </div>
@@ -25,10 +24,10 @@ function SkillsItemsGenerator(props){
 }
 
 
-function SkillsItems(props){
+function SkillsItems({data}){
     return (
         <div className={"skills-items"}>
-            <SkillsItemsGenerator setData = {props.setData} skills={props.skills}> </SkillsItemsGenerator>
+            <SkillsItemsGenerator  data={data}> </SkillsItemsGenerator>
         </div>
     )
 }

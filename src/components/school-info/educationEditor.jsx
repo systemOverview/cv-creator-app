@@ -6,66 +6,59 @@ import {dateInputFormatter} from "../helper.js"
 import {dateDefaultValueFormatter} from "../helper.js"
 
 
-
-
-function EducationEditor({keyOfElementToEdit, callback, data}){
+function EducationEditor({keyOfElementToEdit, callback, data}) {
     let [formError, setFormError] = useState(null)
     let [dateError, setDateError] = useState(null)
-    function additem(){
-        if (element.schoolName==""){
-            setFormError(<p className={"form-error"}> School name must be set, add it or discard the entry if you don't need it </p>)
-        }
-        else {
+    console.log(data)
+    function additem() {
+        if (element.schoolName == "") {
+            setFormError(<p className={"form-error"}> School name must be set, add it or discard the entry if you don't
+                need it </p>)
+        } else {
             setFormError(null)
-            element.removeEmptyAchievements();
+            data.removeEmptyAchievementsOfElement(keyOfElementToEdit)
             callback(false);
         }
     }
-    function discarditem(){
-        element.removeSelf();
+
+    function discarditem() {
+        data.removeElement(keyOfElementToEdit)
         callback(false)
     }
+
     // Closing the editor when a button that changes all the data is clicked to prevent
     // a bug that happens because then the user is editing an inexisting element
-    document.getElementById("reset-form").addEventListener("click",()=>{
-       callback(false)
-    })
-
-    document.getElementById("load-example").addEventListener("click",()=>{
+    document.getElementById("reset-form").addEventListener("click", () => {
         callback(false)
     })
 
+    document.getElementById("load-example").addEventListener("click", () => {
+        callback(false)
+    })
+    let element = data.getElementByKey(keyOfElementToEdit)
 
-    let element = data[0].find(
-        educationEntry =>{
-            return educationEntry.key == keyOfElementToEdit;
-        }
-    )
 
-    function dateInputHandler(propretyToChange, date){
+    function dateInputHandler(propretyToChange, date) {
         let fromDate = document.getElementById("from-date-input").value;
         let toDate = document.getElementById("education-to-date-input").value;
-        if (toDate=="Present"){
+        if (toDate == "Present") {
             let d = new Date();
-            toDate = d.getFullYear()+"-"+d.getMonth() // convert it to comparable format
+            toDate = d.getFullYear() + "-" + d.getMonth() // convert it to comparable format
         }
-        if(whichDateIsBigger(fromDate, toDate)==fromDate && toDate!=""){
+        if (whichDateIsBigger(fromDate, toDate) == fromDate && toDate != "") {
             setDateError(<p className={"date-error"}> The end date must be after the start date </p>)
-            if (propretyToChange=="startDate"){
+            if (propretyToChange == "startDate") {
                 document.getElementById("from-date-input").value = dateDefaultValueFormatter(element.startDate);
-            }
-            else{
+            } else {
                 document.getElementById("to-date-input").value = dateDefaultValueFormatter(element.endDate);
             }
 
-        }
-        else{
+        } else {
             setDateError(null)
-            element[propretyToChange] = dateInputFormatter(date);
+            data.modifyElement(element.key, propretyToChange, dateInputFormatter(date))
         }
 
     }
-
     return (
         <div className={"data-modifier-box"}>
             <div className={"school-input horizontal-multiple-input-holder"}>
@@ -74,8 +67,10 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
                     <input
                         id={"school-name-input"}
                         placeholder={"Hochschule Darmstadt"}
-                        defaultValue={element?element.schoolName:""}
-                        onChange={(e)=>{element.schoolName = e.target.value}}
+                        defaultValue={element ? element.schoolName : ""}
+                        onChange={(e) => {
+                            data.modifyElement(element.key, "schoolName", e.target.value)
+                        }}
 
                     />
                 </div>
@@ -85,8 +80,10 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
                     <input
                         id={"school-degree-input"}
                         placeholder={"Computer science"}
-                        defaultValue={element?element.degreeName:""}
-                        onChange={(e)=>{element.schoolDegree = e.target.value}}
+                        defaultValue={element ? element.degreeName : ""}
+                        onChange={(e) => {
+                            data.modifyElement(element.key, "schoolDegree", e.target.value)
+                        }}
 
                     />
                 </div>
@@ -101,7 +98,9 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
                            type={"month"}
                            placeholder={"MM/YYYY"}
                            defaultValue={dateDefaultValueFormatter(element.startDate)}
-                           onChange={e=>{dateInputHandler("startDate", e.target.value)}}
+                           onChange={e => {
+                               dateInputHandler("startDate", e.target.value)
+                           }}
                     />
                 </div>
 
@@ -112,19 +111,21 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
                         type={"month"}
                         placeholder={"MM/YYYY"}
                         defaultValue={dateDefaultValueFormatter(element.endDate)}
-                        onChange={e=>{dateInputHandler("endDate",e.target.value)}}
+                        onChange={e => {
+                            dateInputHandler("endDate", e.target.value)
+                        }}
                     />
                     <div className={"till-present"}>
                         <input
                             type={"checkbox"}
                             id={"till-present-checkbox"}
 
-                            onChange={(e)=>{
+                            onChange={(e) => {
                                 if (e.target.checked) {
-                                    element["endDate"] = "Present";
+                                    data.modifyElement(element.key, "endDate", "Present")
+
                                     document.getElementById("education-to-date-input").disabled = true;
-                                }
-                                else{
+                                } else {
                                     document.getElementById("education-to-date-input").disabled = false;
                                     let prevDate = document.getElementById("education-to-date-input").value;
                                     dateInputHandler("endDate", prevDate)
@@ -139,18 +140,17 @@ function EducationEditor({keyOfElementToEdit, callback, data}){
             {dateError}
 
 
-
             <label> Achievements </label>
-            <Achievements data={data} keyOfElementToEdit = {keyOfElementToEdit} />
-                {formError}
+            <Achievements data={data} keyOfElementToEdit={keyOfElementToEdit}/>
+            {formError}
             <div className={"form-action-buttons"}>
-            <button onClick={additem} className={"done-button"}>
-                Done
-            </button>
+                <button onClick={additem} className={"done-button"}>
+                    Done
+                </button>
 
-            <button onClick={discarditem} className={"discard-button"}>
-                Discard (delete)
-            </button>
+                <button onClick={discarditem} className={"discard-button"}>
+                    Discard (delete)
+                </button>
             </div>
 
         </div>

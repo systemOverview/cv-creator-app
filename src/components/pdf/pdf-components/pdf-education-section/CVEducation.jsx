@@ -24,27 +24,18 @@ function CVEducationElements ({elements}){
 }
 
 function CVEducation({educationData}){
-    if (educationData==undefined || educationData.length==0){
+    if (educationData==undefined || educationData.getCountOfElements()==0){
         return;
     }
     return <section>
         <Text style = {styles.title}> EDUCATION </Text>
         <SectionDivider/>
 
-        <CVEducationElements elements={ educationData}> </CVEducationElements>
+        <CVEducationElements elements={ educationData.elements}> </CVEducationElements>
 
     </section>
     ;
 }
 
 export default CVEducation;
-/*
-export function educationData(schoolName, degreeName, startDate, endDate, achievements){
-    this.schoolName = schoolName;
-    this.degreeName = degreeName;
-    this.startDate = startDate;
-    this.endDate = endDate;
-    this.achievements = achievements;
-    this.key = generateRandomId();
-}
-*/
+

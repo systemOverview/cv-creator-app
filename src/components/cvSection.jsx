@@ -29,8 +29,9 @@ function CvSectionComponent({data, skills, title,icon,Editor}) {
             </div>
         </div>
         <div className={`items-holder ${isSectionExpanded ? "items-open" : "items-closed"}`}>
-            {data?<Items data={data} callback={setEditing} setKeyOfElementToEdit={setKeyOfElementToEdit} EditorName = {Editor.name}> </Items>:null}
-            {title =='Skills'?<Editor data = {skills}> </Editor>:null}
+
+            {title!="Skills"?<Items data={data} callback={setEditing} setKeyOfElementToEdit={setKeyOfElementToEdit} EditorName = {Editor.name}> </Items>:null}
+            {title =='Skills'?<Editor data = {data}> </Editor>:null}
 
 
 

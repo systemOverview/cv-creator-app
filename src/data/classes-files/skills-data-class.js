@@ -11,11 +11,6 @@ export class skillsData {
         return this._skillName;
     }
 
-    set skillName(value) {
-/*
-        this._skillName = value;
-*/
-    }
 
 
     get setterFunction() {
@@ -34,19 +29,5 @@ export class skillsData {
         this._key = value;
     }
 
-    addSkill(newSkillValue){
-        this._setterFunction(
-            prev=>[...prev, new skillsData(newSkillValue)]
-        )
-    }
-
-
-
-    removeSkill(){
-        this._setterFunction(
-            prev=>prev.filter(skill=>skill.key!=this._key)
-        )
-
-    }
 }
 

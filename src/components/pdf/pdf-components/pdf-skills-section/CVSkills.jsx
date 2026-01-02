@@ -17,11 +17,11 @@ const styles = StyleSheet.create({
 
 
 function CVSkills({skillsData}){
-    if (skillsData==undefined || skillsData.length==0 || skillsData[0].skillName==null){
+    if (skillsData==undefined || skillsData.getCountOfElements()==0){
         return;
     }
     let skillsText = "";
-    skillsData.map(
+    skillsData.elements.map(
 
         element=>{
             if (skillsText.length!=0) {

@@ -6,19 +6,19 @@ import "./items.css"
 import {newDataHolders} from "../../data/cv-data-examples.js"
 function ItemsGenerator({items, setterFunction, setEditing, setKeyOfElementToEdit}){
 
-    function editItem(item){
+    function editItem(itemToEditKey){
         setEditing(true);
-        setKeyOfElementToEdit(item.key)
+        setKeyOfElementToEdit(itemToEditKey)
 
     };
 
-    function deleteItem(item){
-        item.removeSelf()
+    function deleteItem(itemToDeleteKey) {
+        items.removeElement(itemToDeleteKey)
     }
-
+    console.log(items)
 
     return (
-        items.map(
+        items.elements.map(
             (item) =>{
                 return (
                 <div key={item.key} className={"item"}>
@@ -29,8 +29,8 @@ function ItemsGenerator({items, setterFunction, setEditing, setKeyOfElementToEdi
                     */}
                     <h3> {Object.values(item)[0]} </h3>
                     <div className={"edit-icons"}>
-                        <img onClick={()=>editItem(item)} src={pen}  className={"icon"}/>
-                        <img onClick={()=>deleteItem(item)} src={redTrash}  className={"icon"}/>
+                        <img onClick={()=>editItem(item.key)} src={pen}  className={"icon"}/>
+                        <img onClick={()=>deleteItem(item.key)} src={redTrash}  className={"icon"}/>
                     </div>
                 </div>
                 );
@@ -40,7 +40,6 @@ function ItemsGenerator({items, setterFunction, setEditing, setKeyOfElementToEdi
 }
 
 function Items({data,callback, setKeyOfElementToEdit, EditorName}){
-    let setDataFunction = data[1] // the functions responsible for updating the data state
     function addItem(){
     let newHolderType;
     if (EditorName=="EducationEditor"){
@@ -53,18 +52,13 @@ function Items({data,callback, setKeyOfElementToEdit, EditorName}){
         newHolderType="newSkillsHolder";
     }
     let newDataHolder = newDataHolders[newHolderType]();
-    setDataFunction(
-        prev => [...prev,newDataHolder ]
-    )
+    data.addElement(newDataHolder)
     setKeyOfElementToEdit(newDataHolder.key)
     callback(true)
-
-
-
     }
     return (
         <div>
-            <ItemsGenerator items={data[0]} setterFunction ={data[1]} setEditing ={callback} setKeyOfElementToEdit ={setKeyOfElementToEdit}> </ItemsGenerator>
+            <ItemsGenerator items={data} setterFunction ={data} setEditing ={callback} setKeyOfElementToEdit ={setKeyOfElementToEdit}> </ItemsGenerator>
             <div className={`add-item`}>
                 <button onClick={(
                     ()=>{

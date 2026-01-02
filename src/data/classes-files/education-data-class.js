@@ -32,24 +32,6 @@ export class educationData {
         return this._key;
     }
 
-    changeObjectInData(attributeToChange, newValue){
-        this[attributeToChange] = newValue;
-        this.setterFunction(
-            prevData=>{
-                return (
-                    prevData.map(
-                        element=>{
-                            if (element.key == this.key){
-                                return this;
-                            }
-                            return element;
-                        }
-
-                    )
-                )
-            }
-        )
-    }
 
     constructor(schoolName="", schoolDegree="", startDate="", endDate="", achievements=[], setterFunction = null) {
         this._schoolName = schoolName;
@@ -69,78 +51,49 @@ export class educationData {
 
 
     set schoolName(value) {
-        this.changeObjectInData("_schoolName", value)
+        this._schoolName = value;
     }
 
     set schoolDegree(value) {
-        this.changeObjectInData("_schoolDegree", value)
+        this._schoolDegree = value;
     }
 
 
     set startDate(value) {
-        this.changeObjectInData("_startDate", value)
+        this._startDate = value;
     }
 
     set endDate(value) {
-        this.changeObjectInData("_endDate", value)
+        this._endDate = value;
     }
 
-    set achievements(value) {
 
-    }
     set setterFunction(value) {
         this._setterFunction = value;
     }
     addAchievement(){
-        let updatedAchievementsList = [...this._achievements, new Achievement("")]
-        this.changeObjectInData("_achievements", updatedAchievementsList)
-
+        this._achievements = [...this._achievements, new Achievement("")];
     }
-    updateAchievements(achievementToUpdateKey, newAchievementValue){
-        let updatedAchievementsList = this._achievements.map(
-            achievement=>{
-                if (achievement.achievementKey == achievementToUpdateKey){
-                    achievement.achievementText = newAchievementValue;
-                    return achievement;
-                }
-                return achievement;
+    updateAchievement(achievementToUpdateKey, newAchievementValue){
+        for (let achievement of this._achievements ){
+            if (achievement.achievementKey==achievementToUpdateKey){
+                achievement.achievementText=newAchievementValue
+                break;
             }
-        )
-        this.changeObjectInData("_achievements", updatedAchievementsList)
+        }
     }
 
     deleteAchievement(keyOfAchievementToDelete){
-        let updatedAchievementsList = this._achievements.filter(
+        this._achievements = this._achievements.filter(
             (achievement)=>{ return achievement.achievementKey!=keyOfAchievementToDelete}
         )
-        this.changeObjectInData("_achievements", updatedAchievementsList)
 
-    }
-
-    removeSelf(){
-        this.setterFunction(
-            prev=>{
-                return(
-                    prev.filter(entry=>entry.key!=this.key)
-                )
-            }
-        )
     }
 
     removeEmptyAchievements(){
-        let emptyFoundAchievements = 0;
-        let updatedAchievementsList = this._achievements.filter(
-            (achievement)=>{
-                if (achievement.achievementText==""){
-                    emptyFoundAchievements++;
-                    return false;
-                }
-                return true;
-            }
+        this._achievements = this._achievements.filter(
+            (achievement)=>{return achievement.achievementText!=""}
         )
-        if (emptyFoundAchievements>0) {
-            this.changeObjectInData("_achievements", updatedAchievementsList)
-        }
     }
 
 }

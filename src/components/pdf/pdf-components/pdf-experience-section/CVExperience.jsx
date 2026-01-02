@@ -26,7 +26,7 @@ function CVExperienceELements ({elements}){
 }
 
 function CVExperience({experienceData}){
-    if (experienceData==undefined || experienceData.length==0){
+    if (experienceData==undefined || experienceData.getCountOfElements()==0){
         return;
     }
     return <section>
@@ -34,7 +34,7 @@ function CVExperience({experienceData}){
         <SectionDivider/>
 
 
-        <CVExperienceELements elements={ experienceData}> </CVExperienceELements>
+        <CVExperienceELements elements={ experienceData.elements}> </CVExperienceELements>
 
 
     </section>
